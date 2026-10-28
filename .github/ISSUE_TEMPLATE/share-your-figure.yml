@@ -1,0 +1,76 @@
+name: Share a figure / 分享学术示意图
+description: Submit your work for the community gallery / 向社区展示页投稿
+title: "[Community] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        欢迎分享你使用本 skill 绘制的作品。这里是公开投稿，审核后才会收录到展示页。
+        Share a figure made with this skill. This is a public submission; gallery inclusion requires review.
+        Do not include confidential research, personal data, access tokens, macros, or executables.
+  - type: input
+    id: title
+    attributes:
+      label: Figure title / 案例名称
+    validations:
+      required: true
+  - type: input
+    id: discipline
+    attributes:
+      label: Discipline and purpose / 学科与用途
+      placeholder: "e.g. Photonics: device structure and light propagation"
+    validations:
+      required: true
+  - type: textarea
+    id: preview
+    attributes:
+      label: Preview and scientific message / 预览图与科学主题
+      description: Attach a preview here and explain what it communicates / 在此附预览图，并简要说明图的主题。
+    validations:
+      required: true
+  - type: textarea
+    id: editable
+    attributes:
+      label: Editable files and scope / 可编辑文件及范围
+      description: Public PPTX link, optional scene JSON, and any retained raster regions. No passwords or tokens / 提供公开文件链接并说明哪些部分仍为图片，不要填写密码或令牌。
+    validations:
+      required: true
+  - type: textarea
+    id: process
+    attributes:
+      label: How I made it / 绘制说明
+      description: Skill version, short prompt, and manual changes. Do not paste private chat logs / 版本、简要指令及人工修改，不必粘贴私人对话。
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources and rights / 来源与使用权
+      description: Cite papers or reused assets and explain permission; write "original work" if appropriate / 标明文献与素材来源、相关许可；完全自有内容可注明原创。
+    validations:
+      required: true
+  - type: input
+    id: credit
+    attributes:
+      label: Preferred credit / 希望展示的署名
+      description: Name or GitHub handle; a public profile link is optional / 姓名或 GitHub 用户名，可附公开主页。
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: License for the work / 作品许可
+      description: State permitted reuse and redistribution, or allow preview display and links only. Submission does not apply MIT automatically / 写明复用与分发范围，也可仅授权展示预览并链接文件，不会自动采用 MIT。
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Sharing permission / 展示授权
+      options:
+        - label: I have the rights to share this material publicly, and it contains no confidential or personal information / 我有权公开分享这些内容，且其中不含保密或个人敏感信息。
+          required: true
+        - label: I allow this project to display my preview and description with credit and link to my files under the terms stated above / 我同意本项目按上述许可署名展示预览与说明，并链接到我的文件。
+          required: true
+        - label: I have identified any retained images and do not present conceptual artwork as measured evidence / 我已说明保留的图片部分，未将概念示意作为实测证据。
+          required: true

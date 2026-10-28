@@ -1,0 +1,6 @@
+interface:
+  display_name: "Scientific Schematic to PPT"
+  short_description: "Evidence-led figures with preview approval and editable PPT"
+  default_prompt: "Use $scientific-schematic-to-ppt to interpret my material, design a content-rich schematic with restrained academic styling, show a raster preview for approval, and then preserve its structure and detail in native editable PowerPoint."
+policy:
+  allow_implicit_invocation: true

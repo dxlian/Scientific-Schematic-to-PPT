@@ -1,0 +1,73 @@
+name: Publish release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/release.yml'
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-publishing
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          path: scientific-schematic-to-ppt
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Select tagged release source
+        id: version
+        working-directory: scientific-schematic-to-ppt
+        shell: bash
+        run: |
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            release_tag="$GITHUB_REF_NAME"
+          else
+            release_tag="$(git describe --tags --abbrev=0)"
+          fi
+          [[ "$release_tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          git checkout --detach "$release_tag"
+          printf 'tag=%s\n' "$release_tag" >> "$GITHUB_OUTPUT"
+      - name: Build download archives
+        working-directory: scientific-schematic-to-ppt
+        run: python3 scripts/package_release.py --output-dir dist
+      - name: Publish bilingual release and downloads
+        working-directory: scientific-schematic-to-ppt
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+        shell: bash
+        run: |
+          if [[ "$RELEASE_TAG" == "v0.3.1" ]] && gh release view v0.3.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release delete v0.3.0 --repo "$GITHUB_REPOSITORY" --yes
+          fi
+          if [[ "$RELEASE_TAG" == "v0.3.1" ]] && gh api "repos/$GITHUB_REPOSITORY/actions/runs/40622022549" >/dev/null 2>&1; then
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/actions/runs/40622022549"
+          fi
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/*.zip dist/SHA256SUMS.txt \
+              --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$RELEASE_TAG" \
+              dist/*.zip dist/SHA256SUMS.txt \
+              --repo "$GITHUB_REPOSITORY" \
+              --verify-tag \
+              --title "Scientific Schematic to PPT $RELEASE_TAG" \
+              --notes-file "docs/releases/$RELEASE_TAG.md"
+          fi

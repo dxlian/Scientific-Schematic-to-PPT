@@ -1,0 +1,3 @@
+# PDF extraction and visual comparison helpers; core PPT scripts use the standard library.
+PyMuPDF>=1.24,<2
+Pillow>=10,<13
