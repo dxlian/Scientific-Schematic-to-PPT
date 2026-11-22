@@ -1,0 +1,660 @@
+{
+  "schema_version": 1,
+  "kind": "theme-adapted schematic role palettes",
+  "evidence_file": "palette-evidence.json",
+  "palettes": [
+    {
+      "id": "rock-fracture",
+      "name": "岩石裂隙与孔隙水",
+      "name_en": "Rock fractures and pore water",
+      "keywords": {
+        "zh": [
+          "岩石裂隙",
+          "岩体裂隙",
+          "岩石",
+          "岩样",
+          "断层",
+          "裂隙",
+          "孔隙水",
+          "压裂",
+          "裂缝岩体",
+          "岩芯"
+        ],
+        "en": [
+          "rock fracture",
+          "rock fractures",
+          "fractured rock",
+          "fractured core",
+          "rock core",
+          "fault slip",
+          "fault plane",
+          "pore water",
+          "rock joint",
+          "rock joints"
+        ]
+      },
+      "roles": {
+        "rock": "#75777E",
+        "fluid": "#98D1E7",
+        "fault": "#F9D951",
+        "injection": "#226D8C",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "rock": "岩体",
+        "fluid": "孔隙水",
+        "fault": "断层或裂隙面",
+        "injection": "注水方向",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1038/s41467-022-30798-3",
+        "10.1038/s41467-023-40313-x"
+      ],
+      "derivation": "岩体、孔隙水和断层面沿用已逐对象核对的 RGB 众数。注水箭头使用更深的蓝色，以便在浅色流体上辨识。",
+      "noncolor_cues": "裂隙用双边界，水流用定向箭头，岩体可加稀疏纹理。"
+    },
+    {
+      "id": "mass-transport",
+      "name": "流动与溶质传质",
+      "name_en": "Flow and mass transport",
+      "keywords": {
+        "zh": [
+          "流动传质",
+          "流动与传质",
+          "传质",
+          "溶质迁移",
+          "浓度梯度",
+          "对流扩散",
+          "溶质输运",
+          "渗流",
+          "离子传输",
+          "流线"
+        ],
+        "en": [
+          "mass transport",
+          "mass transfer",
+          "solute transport",
+          "advection diffusion",
+          "concentration gradient",
+          "seepage",
+          "streamline",
+          "ion transport"
+        ]
+      },
+      "roles": {
+        "medium": "#D6E6E8",
+        "flow": "#2279A0",
+        "solute": "#B95D26",
+        "boundary": "#77778D",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "medium": "连续介质",
+        "flow": "流动方向",
+        "solute": "溶质或粒子",
+        "boundary": "边界层",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1073/pnas.2417757122",
+        "10.1126/sciadv.adx9812",
+        "10.1038/s41561-024-01570-7"
+      ],
+      "derivation": "参考原图用颜色分开流向、迁移组分和背景的做法。为打印与浅底提供较深的蓝、赭两色。",
+      "noncolor_cues": "流动用长实箭头，扩散用短虚箭头，粒子用圆点。连续浓度场另配带单位的连续色标。"
+    },
+    {
+      "id": "acid-corrosion",
+      "name": "酸蚀、腐蚀与钝化",
+      "name_en": "Corrosion and passivation",
+      "keywords": {
+        "zh": [
+          "酸腐蚀",
+          "腐蚀",
+          "酸蚀",
+          "溶蚀",
+          "酸化",
+          "耐蚀",
+          "钝化",
+          "腐蚀产物",
+          "酸岩反应"
+        ],
+        "en": [
+          "corrosion",
+          "corrosive",
+          "acid etching",
+          "acid dissolution",
+          "acid rock reaction",
+          "passivation",
+          "corroded",
+          "acid attack"
+        ]
+      },
+      "roles": {
+        "substrate": "#CAD3D6",
+        "solution": "#BEDDEA",
+        "front": "#C25B42",
+        "product": "#D8A85D",
+        "passive": "#456A8D",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "substrate": "基体",
+        "solution": "溶液",
+        "front": "反应前沿",
+        "product": "产物层",
+        "passive": "保护层",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1038/s41467-025-67439-4",
+        "10.1038/s41467-025-61060-1",
+        "10.1126/sciadv.abn2541"
+      ],
+      "derivation": "依据原文中分色表达的基体、牺牲层和反应产物，压低饱和度并将前沿与底色拉开。酸岩情形属于这套语义映射的应用。",
+      "noncolor_cues": "反应前沿用粗线，产物层用点纹，保护层用连续双边线；在图例写明实际物质。"
+    },
+    {
+      "id": "mechanical-loading",
+      "name": "机械加载与变形",
+      "name_en": "Mechanical loading and deformation",
+      "keywords": {
+        "zh": [
+          "加载",
+          "卸载",
+          "载荷",
+          "应力",
+          "应变",
+          "压缩试验",
+          "三轴",
+          "弯曲",
+          "受力",
+          "力学试验",
+          "力学加载"
+        ],
+        "en": [
+          "mechanical loading",
+          "loading",
+          "unloading",
+          "load path",
+          "uniaxial",
+          "triaxial",
+          "strain",
+          "stress",
+          "bending",
+          "mechanical test"
+        ]
+      },
+      "roles": {
+        "specimen": "#C7D4DA",
+        "support": "#657887",
+        "load": "#B54C33",
+        "displacement": "#306A99",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "specimen": "试样",
+        "support": "夹具或支座",
+        "load": "加载或驱动",
+        "displacement": "位移或响应",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1073/pnas.2425200122",
+        "10.1073/pnas.2504304122",
+        "10.1038/s41467-022-30798-3"
+      ],
+      "derivation": "从梁弯曲图和实验加载装置提炼试样与方向的区分，统一为冷色支撑、暖色力箭头及蓝色位移。",
+      "noncolor_cues": "力用实心三角箭头，位移用空心箭头，变形前轮廓用虚线。"
+    },
+    {
+      "id": "microfluidics",
+      "name": "微流控芯片与通道",
+      "name_en": "Microfluidic channels",
+      "keywords": {
+        "zh": [
+          "微流控",
+          "微流体",
+          "微通道",
+          "流控芯片",
+          "电泳芯片",
+          "汗液贴片"
+        ],
+        "en": [
+          "microfluidic",
+          "microfluidics",
+          "microfluidic chip",
+          "microchannel",
+          "microchannels",
+          "isotachophoresis",
+          "sweat patch"
+        ]
+      },
+      "roles": {
+        "chip": "#E3E8ED",
+        "channel": "#50788B",
+        "sample": "#C97846",
+        "buffer": "#76BFD4",
+        "detector": "#785A87",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "chip": "芯片基底",
+        "channel": "通道",
+        "sample": "样品",
+        "buffer": "缓冲液",
+        "detector": "检测位点",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1073/pnas.2511724122",
+        "10.1073/pnas.2506137122",
+        "10.1073/pnas.2423682122"
+      ],
+      "derivation": "参考芯片分区、流道和检测带在公开图中的角色，协调为冷基底与暖样品，检测位点另配紫色。",
+      "noncolor_cues": "通道画双边，入口、出口和检测区分别标记；流体补充流向箭头。"
+    },
+    {
+      "id": "layered-device",
+      "name": "分层器件与传感器",
+      "name_en": "Layered devices and tactile sensors",
+      "keywords": {
+        "zh": [
+          "器件分层",
+          "器件结构",
+          "爆炸图",
+          "传感器",
+          "晶体管",
+          "柔性电子",
+          "电极",
+          "层状器件"
+        ],
+        "en": [
+          "layered device",
+          "exploded view",
+          "sensor stack",
+          "tactile sensor",
+          "transistor",
+          "flexible electronics",
+          "electrode",
+          "touch sensor"
+        ]
+      },
+      "roles": {
+        "substrate": "#DDE7EB",
+        "active": "#397F83",
+        "electrode": "#D3A23C",
+        "dielectric": "#AFA6D0",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "substrate": "衬底",
+        "active": "有源层",
+        "electrode": "电极",
+        "dielectric": "介电层",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1126/sciadv.aea1867",
+        "10.1002/advs.202307693",
+        "10.1038/s41563-023-01569-2"
+      ],
+      "derivation": "触觉器件的金青分层与晶体管结构的紫色取样提供色相参考，压低饱和度以便相邻薄层清晰。",
+      "noncolor_cues": "引出线指向每一层，层序用位置固定；跨子图始终复用角色颜色。"
+    },
+    {
+      "id": "optical-path",
+      "name": "光路与光子器件",
+      "name_en": "Optical paths and photonics",
+      "keywords": {
+        "zh": [
+          "光路",
+          "光子",
+          "激光",
+          "光学",
+          "超表面",
+          "谐振腔",
+          "波导",
+          "光束"
+        ],
+        "en": [
+          "optical path",
+          "optical setup",
+          "photonics",
+          "laser",
+          "metasurface",
+          "waveguide",
+          "resonator",
+          "optical beam"
+        ]
+      },
+      "roles": {
+        "component": "#4473C5",
+        "beam": "#D9612D",
+        "path": "#557783",
+        "substrate": "#E1E6EB",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "component": "光学元件",
+        "beam": "主光束",
+        "path": "次级光路",
+        "substrate": "衬底",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1038/s41566-025-01640-1",
+        "10.1038/s41566-025-01701-5",
+        "10.1126/sciadv.aea3538"
+      ],
+      "derivation": "元件蓝与实验图主色簇一致；主光束参考原图橙色，略加深以便细线可见。",
+      "noncolor_cues": "传播方向加箭头，第二光路使用虚线；有物理含义的波长色在图例单独说明。"
+    },
+    {
+      "id": "energy-interface",
+      "name": "电池、光伏与材料界面",
+      "name_en": "Energy devices and interfaces",
+      "keywords": {
+        "zh": [
+          "储能",
+          "电池",
+          "光伏",
+          "钙钛矿",
+          "电解质",
+          "固态电解质界面",
+          "太阳能电池"
+        ],
+        "en": [
+          "battery",
+          "batteries",
+          "photovoltaic",
+          "perovskite",
+          "solar cell",
+          "solar cells",
+          "electrolyte",
+          "interphase",
+          "photovoltaics"
+        ]
+      },
+      "roles": {
+        "collector": "#767E8B",
+        "electrolyte": "#C4DDDE",
+        "active": "#B98355",
+        "interface": "#785B89",
+        "carrier": "#2B7185",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "collector": "集流体",
+        "electrolyte": "电解质",
+        "active": "活性材料",
+        "interface": "界面",
+        "carrier": "载流子",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1038/s41560-024-01667-8",
+        "10.1039/d4ee00296b",
+        "10.1016/j.joule.2022.02.014"
+      ],
+      "derivation": "参考器件层沿图复用颜色的做法，以淡青区分电解质、赭色区分主体，界面使用紫色窄带。",
+      "noncolor_cues": "给薄层引线编号；离子与电子以形状和电荷符号双重区分。"
+    },
+    {
+      "id": "polymer-network",
+      "name": "水凝胶与聚合物网络",
+      "name_en": "Hydrogels and polymer networks",
+      "keywords": {
+        "zh": [
+          "水凝胶",
+          "交联",
+          "双网络",
+          "溶胀",
+          "凝胶相",
+          "聚合物网络",
+          "水合网络"
+        ],
+        "en": [
+          "hydrogel",
+          "hydrogels",
+          "crosslinking",
+          "cross linking",
+          "polymer network",
+          "swelling",
+          "gel phase"
+        ]
+      },
+      "roles": {
+        "medium": "#D0EDF3",
+        "network_a": "#458B88",
+        "network_b": "#936A96",
+        "link": "#C26343",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "medium": "水相",
+        "network_a": "主网络",
+        "network_b": "第二网络",
+        "link": "交联位点",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1126/sciadv.adz0440",
+        "10.1038/s41563-023-01712-z",
+        "10.1038/s41563-023-01697-9"
+      ],
+      "derivation": "水相取示意图中淡青色簇，主链和第二网络参考蓝绿与品红的分相做法并加深。",
+      "noncolor_cues": "主链实线，第二网络虚线，交联点用节点；放大窗沿用网络形状和颜色。"
+    },
+    {
+      "id": "cell-populations",
+      "name": "细胞群与组织分区",
+      "name_en": "Cell populations and tissue regions",
+      "keywords": {
+        "zh": [
+          "细胞群",
+          "细胞亚型",
+          "空间转录组",
+          "组织分区",
+          "细胞互作",
+          "细胞迁移",
+          "细胞分群"
+        ],
+        "en": [
+          "cell populations",
+          "cell types",
+          "cell interactions",
+          "spatial transcriptomics",
+          "tissue domains",
+          "cell migration"
+        ]
+      },
+      "roles": {
+        "population_a": "#8CB19A",
+        "population_b": "#AF99C7",
+        "population_c": "#D78C80",
+        "matrix": "#E6E4DE",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "population_a": "细胞群甲",
+        "population_b": "细胞群乙",
+        "population_c": "细胞群丙",
+        "matrix": "基质",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1038/s41592-024-02408-1",
+        "10.1038/s41592-024-02284-9",
+        "10.1073/pnas.2423682122"
+      ],
+      "derivation": "保留组织图里跨视图恒定的细胞身份色，柔化绿、紫和暖红，使空间边界可单独描线。",
+      "noncolor_cues": "不同群用外框形状或纹理，并在组织视图与统计图沿用同一图例。"
+    },
+    {
+      "id": "molecular-complex",
+      "name": "蛋白结构与分子复合体",
+      "name_en": "Molecular assemblies and subunits",
+      "keywords": {
+        "zh": [
+          "蛋白结构",
+          "分子复合体",
+          "亚基",
+          "蛋白复合物",
+          "微管",
+          "蛋白互作",
+          "分子构象"
+        ],
+        "en": [
+          "protein structure",
+          "protein complex",
+          "molecular assembly",
+          "molecular complex",
+          "subunit",
+          "microtubule",
+          "protein conformation"
+        ]
+      },
+      "roles": {
+        "subunit_a": "#8EAE65",
+        "subunit_b": "#D7A0B6",
+        "subunit_c": "#7279B0",
+        "site": "#AB593D",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "subunit_a": "亚基甲",
+        "subunit_b": "亚基乙",
+        "subunit_c": "亚基丙",
+        "site": "结合位点",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1038/s41594-024-01264-z",
+        "10.1038/s41594-024-01477-2",
+        "10.1038/s41565-024-01804-0"
+      ],
+      "derivation": "取样中可见绿、粉、紫的相邻亚基。紫色沿用测得色，绿粉略降亮度，位点另加暖色。",
+      "noncolor_cues": "同一亚基在旋转视图及放大图中保持同色；位点用圈注或引线标明。"
+    },
+    {
+      "id": "geological-section",
+      "name": "地层剖面与俯冲",
+      "name_en": "Geological sections",
+      "keywords": {
+        "zh": [
+          "地层",
+          "地质剖面",
+          "俯冲",
+          "沉积层",
+          "岩性",
+          "岩层",
+          "板块",
+          "构造剖面"
+        ],
+        "en": [
+          "geological cross section",
+          "geologic cross section",
+          "subduction",
+          "sedimentary layers",
+          "lithology",
+          "tectonic section",
+          "stratigraphy"
+        ]
+      },
+      "roles": {
+        "upper": "#E5C39D",
+        "slab": "#668C9A",
+        "sediment": "#D6AD61",
+        "asthenosphere": "#E9D7CB",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "upper": "上覆地层",
+        "slab": "俯冲板片",
+        "sediment": "沉积层",
+        "asthenosphere": "地幔背景",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1038/s41561-024-01513-2",
+        "10.1038/s41561-021-00764-7"
+      ],
+      "derivation": "借鉴地层剖面中冷色板片与暖色覆盖层的连续映射，减弱饱和度以保留层线与箭头。",
+      "noncolor_cues": "加入层理、点纹和单元标签；原图规定的地层色优先。"
+    },
+    {
+      "id": "research-workflow",
+      "name": "研究流程与计算框架",
+      "name_en": "Research workflows",
+      "keywords": {
+        "zh": [
+          "研究流程",
+          "工作流程",
+          "流程图",
+          "计算框架",
+          "数据处理流程",
+          "算法流程",
+          "分析管线"
+        ],
+        "en": [
+          "research workflow",
+          "workflow",
+          "flowchart",
+          "computational framework",
+          "analysis pipeline",
+          "data pipeline",
+          "workflow diagram"
+        ]
+      },
+      "roles": {
+        "input": "#D7E6F0",
+        "process": "#D9E9DE",
+        "output": "#F0DABC",
+        "highlight": "#A85743",
+        "text": "#24333E",
+        "background": "#FFFFFF"
+      },
+      "role_labels": {
+        "input": "输入",
+        "process": "处理",
+        "output": "输出",
+        "highlight": "关键判断",
+        "text": "正文与细标线",
+        "background": "画布"
+      },
+      "source_dois": [
+        "10.1126/sciadv.adx8006",
+        "10.1038/s41592-024-02284-9",
+        "10.1038/s41592-024-02463-8"
+      ],
+      "derivation": "参考淡色容器区分输入、计算和输出的做法。仅关键判断使用较深色，其余节点依赖位置和连线。",
+      "noncolor_cues": "输入、处理和输出使用独立形状，箭头表明依赖关系。"
+    }
+  ]
+}

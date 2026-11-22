@@ -1,0 +1,11 @@
+{
+  "data": "data-example.csv",
+  "width_mm": 80,
+  "height_mm": 66,
+  "panels": [{
+    "xlabel": "时间 $t$ (s)",
+    "ylabel": "应力 (kPa)",
+    "series": [{"id":"sample","label":"合成数据","kind":"line","x":"time_s","y":"stress_kPa","yerr":"sd_kPa","error_definition":"Synthetic SD column, for illustration","color":"#245C76","marker":"o"}],
+    "annotations": [{"kind":"peak","series":"sample","label":"峰值 {y:.1f} kPa"},{"kind":"interval","bounds":[3,5],"color":"#98D1E7"}]
+  }]
+}

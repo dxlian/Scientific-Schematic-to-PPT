@@ -14,6 +14,8 @@ The bundled builder is intentionally small. It supports explicit scene geometry,
 
 `audit_pptx.py` counts native objects, groups, freeforms, images, fonts, zero-size geometry, placeholders, and grouping locks. It checks duplicate shape IDs and package relationships. It cannot establish semantic correctness, text fit, or app-level groupability.
 
+For new default-font scenes run `python scripts/audit_pptx.py figure.pptx --require-native-only --font-latin "Times New Roman" --font-ea SimSun`. The audit checks each populated native text run. Use the agreed font names for journal overrides. Where individual labels deliberately differ, inspect their OOXML runs and the rendered labels against the design. For a legacy deck with one uniform font, `--font` retains its original check.
+
 Use `render_check.ps1` on Windows with an installed PowerPoint or WPS application. Export the actual saved PPTX, exercise group and ungroup in memory, and report each operation separately. Rendering success in one app is not a guarantee for all Office versions. Do not save test changes or close other open presentations.
 
 On other platforms, use an available renderer; document limitations. Do not install Office, change registry entries, enable macros, or bypass security settings. A timeout is a reason to inspect application state, not start repeated copies.
@@ -21,5 +23,7 @@ On other platforms, use an available renderer; document limitations. Do not inst
 ## Final review
 
 Compare to the approved image panel by panel. Check all exact label strings, arrow directions, formulas, units, object bounds, overlap, line thickness, font size at print scale, and intended color semantics. Pixel similarity is optional and diagnostic only: vector simplification can be appropriate, and a high score cannot prove editability.
+
+If a user supplied a reference for close reproduction, also compare with that original using [the reference-redraw procedure](reference-redraw.md). Keep native scene geometry and the numerical data panel’s plotting source aligned to the same layout.
 
 Deliver the `.pptx` and actual rendered `.png`, plus a brief disclosure of differences or unverified compatibility. Keep source analysis and validation details in the local project. Do not add mandatory personal branding or watermarks to the user's scientific figure.

@@ -1,5 +1,7 @@
 # Scientific Schematic to PPT
 
+Version 0.4.0 adds [topic-specific palettes](references/palette-guide.md), [reference-guided reconstruction](references/reference-redraw.md) and [quantitative plots and annotations](references/data-plotting.md). Chinese text defaults to SimSun and Latin text to Times New Roman. [Browse the schematic palette atlas](docs/palette-atlas.pdf).
+
 **From research materials to academic schematics you can edit element by element in PowerPoint.**
 
 [中文](README.md) · [Skill](SKILL.md) · [Gallery](docs/gallery.en.md) · [Community](docs/community-gallery.en.md) · [Downloads](https://github.com/dxlian/Scientific-Schematic-to-PPT/releases/latest) · [Style guide](references/style-guide.md)

@@ -1,5 +1,7 @@
 # Scientific Schematic to PPT
 
+v0.4.0 增加了[按研究主题选色](references/palette-guide.md)、[依照参考图和数据复绘](references/reference-redraw.md)以及[数据绘图与精准标注](references/data-plotting.md)。中文默认宋体，英文和数字默认 Times New Roman。[浏览示意图配色色卡](docs/palette-atlas.pdf)。
+
 **从研究材料到逐元素可编辑的学术示意图 PPT。**
 
 [English](README.en.md) · [Skill](SKILL.md) · [案例展示](docs/gallery.md) · [社区案例](docs/community-gallery.md) · [下载安装](https://github.com/dxlian/Scientific-Schematic-to-PPT/releases/latest) · [风格规范](references/style-guide.md)

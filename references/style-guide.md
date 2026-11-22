@@ -6,22 +6,12 @@ Use a white canvas, restrained fills, black or dark-gray outlines, and clearly n
 
 Minimal styling does not mean minimal content. Represent the complete system, interacting components, and explanatory local details. Alternative compositions include paired states, layered architectures, parallel pathways, and apparatus sections. Match layout to the subject rather than reusing one template. Every detail should explain something: neither sparse placeholders nor arbitrary complexity is acceptable.
 
-| Role | Default |
-|---|---|
-| Background | `FFFFFF` |
-| Text and main boundaries | `202020` |
-| Neutral solid/material | `DDDDDD` |
-| Secondary layer | `DDE5C8` |
-| Water/cool flow | `159DDD` |
-| Warm flow | `E04746` |
-| Altered region | `AAB568` |
-
-The palette above is illustrative, not a required domain palette. Colors encode physical or functional distinctions, not decoration. Add a legend when the meaning is not self-evident. A soft gradient needs a documented qualitative meaning; no glowing blobs, glossy 3D, dramatic lighting, texture noise, drop shadows, or futuristic machinery. Color is not evidence of a measured change.
+Choose the subject and color roles with [the palette guide](palette-guide.md). A locked reference or explicit color assignment takes precedence. Keep the fill for each entity stable across panels and use shape, line style or labels to preserve meaning in grayscale. Compare text with the actual background under it at final size. A soft gradient needs a documented qualitative meaning; no glowing blobs, glossy 3D, dramatic lighting, texture noise, drop shadows, or futuristic machinery. Color is not evidence of a measured change.
 
 ## Typography and print size
 
-- English labels, Times New Roman by default. Preserve a user's chosen language or journal font.
-- Default final figure width: 180 mm. Typical labels: 9 pt at this physical width, panel headings 11–12 pt. These are design defaults, not a universal journal requirement.
+- Chinese labels use SimSun (宋体); Latin and numeric text use Times New Roman by default. Preserve a user's chosen language or journal font.
+- Typical final figure widths are 80 mm for one column and 160–180 mm for two. The original schematic canvas is 180 mm. Typical labels: 9 pt at this physical width, panel headings 11–12 pt. These are design defaults, not a universal journal requirement.
 - Use approximately 0.25-0.4 pt for secondary detail, 0.4-0.7 pt for main boundaries, and 0.7-1.0 pt for key arrows at final size. Adjust to reproduction quality and journal specifications.
 - Re-layout for a single-column figure; do not blindly shrink a dense double-column layout. Printed type = PPT type × placed width / slide width.
 - Keep complete words and chemical formulas intact. Make subscripts/superscripts actual text formatting in the native file when needed.
@@ -37,7 +27,7 @@ Choose one main explanatory question. Use secondary details to clarify it, not t
 
 ## Avoid
 
-- Copying another paper's layout, proprietary drawings, or real data as decorative content.
+- Importing another article's scientific objects or measurements as decorative content. For a user-designated reproduction, follow the registered reference and evidence.
 - Abstract contact-network imagery that suggests measurements not actually made.
 - Giant process arrows that overpower scientific information.
 - Captions or long paragraphs inside the scientific panel.

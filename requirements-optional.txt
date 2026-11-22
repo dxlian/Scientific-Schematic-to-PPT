@@ -1,3 +1,6 @@
 # PDF extraction and visual comparison helpers; core PPT scripts use the standard library.
 PyMuPDF>=1.24,<2
 Pillow>=10,<13
+# CSV curves, annotations, and PDF/PNG export.
+matplotlib>=3.6,<4
+numpy>=1.23,<3

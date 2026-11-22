@@ -6,6 +6,7 @@ import argparse
 import json
 import math
 import re
+import unicodedata
 from collections import Counter
 from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
@@ -41,9 +42,9 @@ def emu(value):
 
 
 def color(value):
-    if not isinstance(value, str) or not re.fullmatch(r"[0-9A-Fa-f]{6}", value):
-        raise ValueError(f"Use a six-digit RGB color without #: {value!r}")
-    return value.upper()
+    if not isinstance(value, str) or not re.fullmatch(r"#?[0-9A-Fa-f]{6}", value):
+        raise ValueError(f"Use a six-digit RGB color: {value!r}")
+    return value.lstrip("#").upper()
 
 
 def walk(elements):
@@ -107,6 +108,11 @@ def validate_text(e):
 
 def validate_scene(scene):
     if scene.get("version") != 1: raise ValueError("Unsupported scene version")
+    accents = scene.get("theme_accents", [])
+    if not isinstance(accents, list) or len(accents) > 6:
+        raise ValueError("theme_accents must be an ordered list of up to six RGB colors")
+    for accent in accents:
+        color(accent)
     width = num(scene["width_mm"]); height = num(scene["height_mm"])
     if width <= 0 or height <= 0: raise ValueError("Canvas dimensions must be positive")
     if not scene.get("elements"): raise ValueError("A scene must contain objects")
@@ -193,29 +199,51 @@ def custom_geometry(e, box):
     return node("a:custGeom", children=[node("a:avLst"), node("a:gdLst"), node("a:ahLst"), node("a:cxnLst"), node("a:rect", {"l": "0", "t": "0", "r": "r", "b": "b"}), node("a:pathLst", children=[path])])
 
 
-def text_body(e, font):
+def text_fonts(settings, inherited):
+    """An explicit legacy font applies to both scripts at this scope."""
+    uniform = settings.get("font")
+    latin = settings.get("font_latin", uniform or inherited[0])
+    east_asian = settings.get("font_ea", uniform or inherited[1])
+    if not all(isinstance(face, str) and face.strip() for face in (latin, east_asian)):
+        raise ValueError("Font family names must be nonempty strings")
+    return latin, east_asian
+
+
+def font_nodes(faces):
+    latin, east_asian = faces
+    return [node("a:latin", {"typeface": latin}), node("a:ea", {"typeface": east_asian}),
+            node("a:cs", {"typeface": latin})]
+
+
+def text_body(e, fonts):
+    element_fonts = text_fonts(e, fonts)
     body = node("p:txBody", children=[node("a:bodyPr", {"wrap": "square", "lIns": "0", "rIns": "0", "tIns": "0", "bIns": "0", "anchor": "t"}, [node("a:noAutofit")]), node("a:lstStyle")])
     paragraphs = [e["runs"]] if "runs" in e else [[{"text": t}] for t in str(e["text"]).split("\n")]
     for runs in paragraphs:
         paragraph = node("a:p", children=[node("a:pPr", {"algn": {"left": "l", "center": "ctr", "right": "r"}[e.get("align", "left")]}, [node("a:buNone")])])
         for run in runs:
-            attrs = {"lang": "en-US", "sz": round(run.get("font_pt", e.get("font_pt", 9))*100)}
+            has_east_asian = any(unicodedata.east_asian_width(c) in ("W", "F") for c in run["text"])
+            attrs = {"lang": "zh-CN" if has_east_asian else "en-US",
+                     "altLang": "en-US" if has_east_asian else "zh-CN",
+                     "sz": round(run.get("font_pt", e.get("font_pt", 9))*100)}
             if run.get("bold", e.get("bold", False)): attrs["b"] = "1"
             if run.get("italic", e.get("italic", False)): attrs["i"] = "1"
             if run.get("baseline") is not None: attrs["baseline"] = round(num(run["baseline"])*1000)
-            rp = node("a:rPr", attrs, [node("a:solidFill", children=[node("a:srgbClr", {"val": color(e.get("color", "202020"))})]), node("a:latin", {"typeface": e.get("font", font)}), node("a:ea", {"typeface": e.get("font", font)}), node("a:cs", {"typeface": e.get("font", font)})])
+            ink = node("a:solidFill", children=[node("a:srgbClr", {"val": color(e.get("color", "202020"))})])
+            rp = node("a:rPr", attrs, [ink, *font_nodes(text_fonts(run, element_fonts))])
             t = node("a:t"); t.text = str(run["text"])
             paragraph.append(node("a:r", children=[rp, t]))
-        paragraph.append(node("a:endParaRPr", {"lang": "en-US", "sz": round(e.get("font_pt", 9)*100)}))
+        paragraph.append(node("a:endParaRPr", {"lang": "en-US", "altLang": "zh-CN",
+                                              "sz": round(e.get("font_pt", 9)*100)}, font_nodes(element_fonts)))
         body.append(paragraph)
     return body
 
 
-def shape(e, ids, font):
+def shape(e, ids, fonts):
     ident = next(ids); kind = e["type"]; box = bounds(e)
     props = node("p:cNvPr", {"id": ident, "name": "SCHEM_"+e["id"]})
     if kind == "group":
-        return node("p:grpSp", children=[node("p:nvGrpSpPr", children=[props, node("p:cNvGrpSpPr"), node("p:nvPr")]), node("p:grpSpPr", children=[transform(box, True)])] + [shape(c, ids, font) for c in e["children"]])
+        return node("p:grpSp", children=[node("p:nvGrpSpPr", children=[props, node("p:cNvGrpSpPr"), node("p:nvPr")]), node("p:grpSpPr", children=[transform(box, True)])] + [shape(c, ids, fonts) for c in e["children"]])
     connector = kind == "line"
     nv = node("p:nvCxnSpPr" if connector else "p:nvSpPr", children=[props, node("p:cNvCxnSpPr" if connector else "p:cNvSpPr", {"txBox": "1"} if kind == "text" else {}), node("p:nvPr")])
     flips = {}
@@ -227,7 +255,7 @@ def shape(e, ids, font):
     else: sppr.append(node("a:prstGeom", {"prst": "line" if connector else "ellipse" if kind == "ellipse" else "rect"}, [node("a:avLst")]))
     sppr.extend([fill(e), line_style(e), node("a:effectLst")])
     result = node("p:cxnSp" if connector else "p:sp", children=[nv, sppr])
-    if kind == "text": result.append(text_body(e, font))
+    if kind == "text": result.append(text_body(e, fonts))
     return result
 
 
@@ -244,19 +272,24 @@ def rels(entries):
 
 def package(scene):
     from itertools import count
-    ids = count(2); font = scene.get("font", "Times New Roman")
+    ids = count(2)
+    faces = text_fonts(scene, ("Times New Roman", "SimSun"))
     objects = tree()
     elements = scene["elements"]
     if scene.get("group_all", True): elements = [{"id": "figure", "type": "group", "children": elements}]
-    for e in elements: objects.append(shape(e, ids, font))
+    for e in elements: objects.append(shape(e, ids, faces))
     slide = node("p:sld", children=[node("p:cSld", children=[node("p:bg", children=[node("p:bgPr", children=[fill({"fill": scene.get("background", "FFFFFF")}), node("a:effectLst")])]), objects]), node("p:clrMapOvr", children=[node("a:masterClrMapping")])])
     rid = "{"+NS["r"]+"}id"
     presentation = node("p:presentation", children=[node("p:sldMasterIdLst", children=[node("p:sldMasterId", {"id": "2147483648", rid: "rId1"})]), node("p:sldIdLst", children=[node("p:sldId", {"id": "256", rid: "rId2"})]), node("p:sldSz", {"cx": emu(scene["width_mm"]), "cy": emu(scene["height_mm"])}), node("p:notesSz", {"cx": "6858000", "cy": "9144000"})])
     cmap = {"bg1":"lt1", "tx1":"dk1", "bg2":"lt2", "tx2":"dk2", **{f"accent{i}":f"accent{i}" for i in range(1,7)}, "hlink":"hlink", "folHlink":"folHlink"}
     master = node("p:sldMaster", children=[node("p:cSld", children=[tree()]), node("p:clrMap", cmap), node("p:sldLayoutIdLst", children=[node("p:sldLayoutId", {"id":"2147483649", rid:"rId1"})]), node("p:txStyles", children=[node("p:titleStyle"), node("p:bodyStyle"), node("p:otherStyle")])])
     layout = node("p:sldLayout", {"type":"blank", "preserve":"1"}, [node("p:cSld", {"name":"Blank"}, [tree()]), node("p:clrMapOvr", children=[node("a:masterClrMapping")])])
-    scheme = node("a:clrScheme", {"name":"Scientific"}, [node("a:"+k, children=[node("a:srgbClr", {"val":v})]) for k,v in {"dk1":"202020","lt1":"FFFFFF","dk2":"505050","lt2":"EEEEEE","accent1":"159DDD","accent2":"E04746","accent3":"AAB568","accent4":"DDE5C8","accent5":"999999","accent6":"777777","hlink":"0563C1","folHlink":"954F72"}.items()])
-    fonts = node("a:fontScheme", {"name":"Scientific"}, [node("a:"+k, children=[node("a:latin", {"typeface":font}), node("a:ea", {"typeface":font}), node("a:cs", {"typeface":font})]) for k in ("majorFont","minorFont")])
+    scheme_colors = {"dk1":"202020","lt1":"FFFFFF","dk2":"505050","lt2":"EEEEEE","accent1":"159DDD","accent2":"E04746","accent3":"AAB568","accent4":"DDE5C8","accent5":"999999","accent6":"777777","hlink":"0563C1","folHlink":"954F72"}
+    for i, accent in enumerate(scene.get("theme_accents", []), 1):
+        scheme_colors[f"accent{i}"] = color(accent)
+    scheme = node("a:clrScheme", {"name":"Scientific"}, [node("a:"+k, children=[node("a:srgbClr", {"val":v})]) for k,v in scheme_colors.items()])
+    fonts = node("a:fontScheme", {"name":"Scientific"},
+                 [node("a:"+k, children=font_nodes(faces)) for k in ("majorFont","minorFont")])
     phfill = lambda: node("a:solidFill", children=[node("a:schemeClr", {"val":"phClr"})])
     fmt = node("a:fmtScheme", {"name":"Scientific"}, [node("a:fillStyleLst", children=[phfill() for _ in range(3)]), node("a:lnStyleLst", children=[node("a:ln", {"w":"12700"}, [phfill(), node("a:prstDash", {"val":"solid"})]) for _ in range(3)]), node("a:effectStyleLst", children=[node("a:effectStyle", children=[node("a:effectLst")]) for _ in range(3)]), node("a:bgFillStyleLst", children=[phfill() for _ in range(3)])])
     theme = node("a:theme", {"name":"Scientific"}, [node("a:themeElements", children=[scheme,fonts,fmt])])

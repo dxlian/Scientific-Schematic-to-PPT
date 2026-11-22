@@ -8,8 +8,8 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT_FILES = {"SKILL.md", "README.md", "README.en.md", "LICENSE", "CONTRIBUTING.md",
               ".gitignore", ".gitattributes", "requirements-optional.txt"}
-SOURCE_DIRS = {"agents", "scripts", "references", "assets", "examples", "docs", ".github"}
-SUFFIXES = {".py", ".ps1", ".md", ".json", ".yaml", ".yml", ".txt", ".png", ".pptx"}
+SOURCE_DIRS = {"agents", "scripts", "references", "assets", "examples", "docs", ".github", "tests"}
+SUFFIXES = {".py", ".r", ".csv", ".ps1", ".md", ".json", ".yaml", ".yml", ".txt", ".png", ".pptx"}
 SKILL_DIRS = {"agents", "scripts", "references", "assets"}
 
 
@@ -21,6 +21,8 @@ def selected_files(root):
         rel = path.relative_to(root)
         if "__pycache__" in rel.parts or any(p.startswith(".env") for p in rel.parts): continue
         if len(rel.parts) == 1 and rel.name in ROOT_FILES:
+            files.append(path)
+        elif rel.as_posix() == "docs/palette-atlas.pdf":
             files.append(path)
         elif rel.parts[0] in SOURCE_DIRS and path.suffix.lower() in SUFFIXES:
             files.append(path)
@@ -44,7 +46,7 @@ def package(root, output):
         for path in files:
             rel = path.relative_to(root)
             if compact:
-                if not (rel.as_posix() in {"SKILL.md", "LICENSE", "requirements-optional.txt"} or rel.parts[0] in SKILL_DIRS): continue
+                if not (rel.as_posix() in {"SKILL.md", "LICENSE", "requirements-optional.txt", "docs/palette-atlas.pdf"} or rel.parts[0] in SKILL_DIRS): continue
                 if rel.as_posix() == "scripts/package_release.py": continue
             chosen.append(path)
         with ZipFile(target, "x", compression=ZIP_DEFLATED) as archive:

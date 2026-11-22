@@ -11,12 +11,14 @@ P = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
 A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
 
 
-def audit(path, native_only=False, font=None):
+def audit(path, native_only=False, font=None, font_latin=None, font_ea=None):
     result = {"file": Path(path).name, "slides": 0, "shapes": 0, "connectors": 0,
               "textboxes": 0, "groups": 0, "freeforms": 0, "pictures": 0,
               "fonts": [], "placeholders": 0, "group_locks": 0, "errors": [], "warnings": [],
               "render_verified": False, "grouping_verified_in_app": False}
     fonts = set()
+    by_script = {"latin": set(), "ea": set()}
+    requested = {"latin": font_latin, "ea": font_ea}
     with ZipFile(path) as archive:
         names = set(archive.namelist())
         if archive.testzip(): result["errors"].append("ZIP CRC failure")
@@ -47,6 +49,18 @@ def audit(path, native_only=False, font=None):
             result["freeforms"] += len(list(root.iter(A+"custGeom")))
             for shape in root.iter(P+"sp"):
                 if any(e.text for e in shape.iter(A+"t")): result["textboxes"] += 1
+            for run in root.iter(A+"r"):
+                if not run.findtext(A+"t"):
+                    continue
+                for slot, expected in requested.items():
+                    face = run.find(A+"rPr/"+A+slot)
+                    actual = face.get("typeface") if face is not None else None
+                    if actual:
+                        by_script[slot].add(actual)
+                    if expected and actual != expected:
+                        error = f"{name}: {slot} text font {actual!r}, expected {expected!r}"
+                        if error not in result["errors"]:
+                            result["errors"].append(error)
             for e in root.iter():
                 if e.get("noGrp") in ("1", "true"): result["group_locks"] += 1
                 if e.tag in (A+"latin", A+"ea", A+"cs") and e.get("typeface"): fonts.add(e.get("typeface"))
@@ -58,6 +72,10 @@ def audit(path, native_only=False, font=None):
         if result["group_locks"]: result["errors"].append("Objects contain noGrp restrictions")
         if result["placeholders"]: result["warnings"].append("Placeholders may prevent grouping with other objects")
     result["fonts"] = sorted(fonts)
+    result["fonts_by_script"] = {slot: sorted(faces) for slot, faces in by_script.items()}
+    for slot, expected in requested.items():
+        if expected and not by_script[slot]:
+            result["errors"].append(f"No explicit {slot} font on nonempty text runs")
     if font and (not fonts or any(f != font for f in fonts)): result["errors"].append("Requested font does not match all explicit text fonts")
     if not result["slides"]: result["errors"].append("No slides")
     result["passed"] = not result["errors"]
@@ -67,9 +85,12 @@ def audit(path, native_only=False, font=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pptx"); parser.add_argument("--require-native-only", action="store_true")
-    parser.add_argument("--font"); parser.add_argument("--output")
+    parser.add_argument("--font", help="Require a single font across all explicit font slots (legacy scenes)")
+    parser.add_argument("--font-latin", help="Require this explicit Latin font on every text run")
+    parser.add_argument("--font-ea", help="Require this explicit East Asian font on every text run")
+    parser.add_argument("--output")
     args = parser.parse_args()
-    result = audit(args.pptx, args.require_native_only, args.font)
+    result = audit(args.pptx, args.require_native_only, args.font, args.font_latin, args.font_ea)
     text = json.dumps(result, ensure_ascii=False, indent=2)
     if args.output:
         target = Path(args.output)

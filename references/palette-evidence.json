@@ -1,0 +1,3272 @@
+{
+  "schema_version": 1,
+  "sampled_on": "2026-11-22",
+  "selection": "Purposive sample of online original research figures with schematic regions. Colors were measured from rendered regions, without retaining figures or papers. Counts describe this sample only.",
+  "roi_convention": "Normalized [left, top, right, bottom] from the top-left of the publisher image. See each method for rounding and resampling.",
+  "sampling_methods": {
+    "flat-fill-median": "Composite to white, crop ROI with floored integer pixel coordinates, fit within 850x850 px (Pillow Lanczos). Select pixels with RGB channel range >=30 and four adjacent neighbors differing by <=9 in each channel. Rank RGB bins of width 16 by frequency, tie by bin index, accept bin medians with >=8 pixels and RGB Euclidean separation >=48 up to six colors. HEX values approximate visible fills.",
+    "chromatic-bin-mean": "Source image decoded as RGB with Pillow. Relative ROI [left,top,right,bottom] is rounded to nearest integer pixel using round(v*dimension), then sampled by nearest-neighbor thumbnail within 300x300. Discard pixels with max(R,G,B)-min(R,G,B)<25 or max(R,G,B)<50 or min(R,G,B)>235. Each channel is binned by floor(channel/24). Sort bins by descending pixel count (ties by ascending bin tuple). Compute each bin mean RGB rounded to nearest integer. In that order accept bins with Euclidean RGB distance at least 48 from all previously retained colors, up to five. Fractions count pixels in each exact bin divided by all retained chromatic pixels before bin selection. Codes describe rendered pixels in that region; JPG, antialiasing and shading affect them. Ignore bins with fewer than max(4,0.002*chromatic_pixel_count) pixels. Source dimensions and bins are recorded.",
+    "named-region-mode": "Visually identify a named component. Convert source PNG to RGB, multiply normalized bounds by source dimension and round each bound. Count original RGB pixels within the crop. Use the most frequent RGB and its count divided by the area of that ROI. SHA-256 refers to the source image bytes."
+  },
+  "counts": {
+    "papers": 67,
+    "journals": 15,
+    "regions": 70
+  },
+  "excluded": [
+    {
+      "doi": "10.1038/s43586-024-00373-9",
+      "title": "Perovskite solar cells",
+      "reason": "Methods primer; excluded from the original-research sample and theme recipes.",
+      "figure_url": "https://www.nature.com/articles/s43586-024-00373-9/figures/1"
+    }
+  ],
+  "records": [
+    {
+      "doi": "10.1038/s41586-025-08820-7",
+      "title": "A manufacturable platform for photonic quantum computing",
+      "journal": "Nature",
+      "first_author": "PsiQuantum team",
+      "year": 2025,
+      "figure": 2,
+      "figure_url": "https://www.nature.com/articles/s41586-025-08820-7/figures/2",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-08820-7/MediaObjects/41586_2025_8820_Fig2_HTML.png",
+      "theme": "photonics",
+      "figure_title": "Fig. 2: Key building blocks of the platform.",
+      "image_size_px": [
+        1740,
+        1496
+      ],
+      "sha256": "34d56ed81704e71b6e2f8b25f23be6918a3c4fc2a1bfc2e6b0f03e64540102b5",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper device-icon strip. Thin colored paths run over a dark substrate.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            0.18
+          ],
+          "colors": [
+            {
+              "hex": "#C99722"
+            },
+            {
+              "hex": "#287B1B"
+            },
+            {
+              "hex": "#F3254B"
+            },
+            {
+              "hex": "#351118"
+            },
+            {
+              "hex": "#2C2948"
+            },
+            {
+              "hex": "#9A96CA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41586-023-05885-0",
+      "title": "Loophole-free Bell inequality violation with superconducting circuits",
+      "journal": "Nature",
+      "first_author": "Simon Storz",
+      "year": 2023,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41586-023-05885-0/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-023-05885-0/MediaObjects/41586_2023_5885_Fig1_HTML.png",
+      "theme": "quantum-architecture",
+      "figure_title": "Fig. 1: Schematic of the Bell test experiment.",
+      "image_size_px": [
+        1022,
+        1089
+      ],
+      "sha256": "11f431fac87ac471e8fac155d4df3cd5a7478f64cbd8c3d7e47864268cdb5282",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Two experimental parties are distinguished by red and blue marks; yellow denotes the link.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#F2EB95"
+            },
+            {
+              "hex": "#2E368F"
+            },
+            {
+              "hex": "#EC1C24"
+            },
+            {
+              "hex": "#F7E7D7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41586-023-06927-3",
+      "title": "Logical quantum processor based on reconfigurable atom arrays",
+      "journal": "Nature",
+      "first_author": "Dolev Bluvstein",
+      "year": 2023,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41586-023-06927-3/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-023-06927-3/MediaObjects/41586_2023_6927_Fig1_HTML.png",
+      "theme": "quantum-architecture",
+      "figure_title": "Fig. 1: A programmable logical processor based on reconfigurable atom arrays.",
+      "image_size_px": [
+        2145,
+        1212
+      ],
+      "sha256": "aa9e4d8a41cc54e610087b43c12b9c0f5175900ea6a7bde92177e43dc8a8ee55",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Left processor layout. Light blue and pink region bands separate functional zones.",
+          "relative_bbox": [
+            0,
+            0,
+            0.51,
+            0.94
+          ],
+          "colors": [
+            {
+              "hex": "#F4CFD1"
+            },
+            {
+              "hex": "#C6DEE9"
+            },
+            {
+              "hex": "#397791"
+            },
+            {
+              "hex": "#93754C"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41586-021-03268-x",
+      "title": "Control and readout of a superconducting qubit using a photonic link",
+      "journal": "Nature",
+      "first_author": "Florent Lecocq",
+      "year": 2021,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41586-021-03268-x/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-021-03268-x/MediaObjects/41586_2021_3268_Fig1_HTML.png",
+      "theme": "photonics",
+      "figure_title": "Fig. 1: Photonic link concept.",
+      "image_size_px": [
+        1066,
+        893
+      ],
+      "sha256": "af7fadedc5a38403793ba9dc5b81502624b434612eb29fa0f91cfc87d1bd82d0",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Side-by-side circuit architectures. Stacked pale pink, peach and lavender bands distinguish temperature stages.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#D7D7FF"
+            },
+            {
+              "hex": "#FFE7D7"
+            },
+            {
+              "hex": "#FF9300"
+            },
+            {
+              "hex": "#5959D6"
+            },
+            {
+              "hex": "#3939FF"
+            },
+            {
+              "hex": "#D3D339"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41586-024-08406-9",
+      "title": "Scaling and networking a modular photonic quantum computer",
+      "journal": "Nature",
+      "first_author": "H. Aghaee Rad",
+      "year": 2025,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41586-024-08406-9/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-024-08406-9/MediaObjects/41586_2024_8406_Fig1_HTML.png",
+      "theme": "photonics",
+      "figure_title": "Fig. 1: Layout of the architecture including loss paths P 1 , P 2 , P 3 and P 4 .",
+      "image_size_px": [
+        1538,
+        1351
+      ],
+      "sha256": "6d870a9ceacde14f95d22c2327814716f0ea8679b6aa913127415ebb2cc10041",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Module blocks, interconnects and logic elements. Light warm fills separate blocks from signal lines.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#FFE5C2"
+            },
+            {
+              "hex": "#FFC77C"
+            },
+            {
+              "hex": "#D3E6F1"
+            },
+            {
+              "hex": "#76B4D6"
+            },
+            {
+              "hex": "#A4CEE3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41566-024-01415-0",
+      "title": "Integrated optical vortex microcomb",
+      "journal": "Nature Photonics",
+      "first_author": "Bo Chen",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41566-024-01415-0/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41566-024-01415-0/MediaObjects/41566_2024_1415_Fig1_HTML.png",
+      "theme": "photonics",
+      "figure_title": "Fig. 1: A schematic showing the generation of self-torque pulses from the vortex microcomb.",
+      "image_size_px": [
+        1535,
+        722
+      ],
+      "sha256": "7feeb8f3003239674ea4e3fd08e76e390211095ce50e3f6862590ff0cb0fdbde",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Device and emitted optical field. Ordered spectral colors belong to the illustrated field; independent categories should use a separate discrete set.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#6889F7"
+            },
+            {
+              "hex": "#FEC7B5"
+            },
+            {
+              "hex": "#B6E5FE"
+            },
+            {
+              "hex": "#B3FECD"
+            },
+            {
+              "hex": "#FFF6D6"
+            },
+            {
+              "hex": "#8BB4FE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41586-024-07058-z",
+      "title": "Photonic chip-based low-noise microwave oscillator",
+      "journal": "Nature",
+      "first_author": "Igor S. Kudelin",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41586-024-07058-z/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-024-07058-z/MediaObjects/41586_2024_7058_Fig1_HTML.png",
+      "theme": "photonics",
+      "figure_title": "Fig. 1: Concept of 2P-OFD for low-noise microwave generation.",
+      "image_size_px": [
+        1037,
+        1538
+      ],
+      "sha256": "88b9fcd41a858b495771fe578d41ea7a49a1600879ffa62aca58ebdc5a0cf1e1",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Three horizontal stages use different pale backdrops; dark component outlines remain legible.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#F8F4CC"
+            },
+            {
+              "hex": "#8DA0B4"
+            },
+            {
+              "hex": "#265A9D"
+            },
+            {
+              "hex": "#C31A21"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41566-025-01701-5",
+      "title": "Harnessing micro-Fabry–Pérot reference cavities in photonic integrated circuits",
+      "journal": "Nature Photonics",
+      "first_author": "Haotian Cheng",
+      "year": 2025,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41566-025-01701-5/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41566-025-01701-5/MediaObjects/41566_2025_1701_Fig1_HTML.png",
+      "theme": "photonics",
+      "figure_title": "Fig. 1: Integration of μFP cavity with PICs.",
+      "image_size_px": [
+        1792,
+        897
+      ],
+      "sha256": "1128b2c8ad096536c76aa134622e08b49db092215e4425d4efd4baa92029f30b",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Lower integration architecture. A warm circuit path stands out from cool substrate and device layers.",
+          "relative_bbox": [
+            0,
+            0.59,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#D34834"
+            },
+            {
+              "hex": "#8AA3C7"
+            },
+            {
+              "hex": "#ED2024"
+            },
+            {
+              "hex": "#E8866A"
+            },
+            {
+              "hex": "#F1AE95"
+            },
+            {
+              "hex": "#E9D3C9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41563-023-01569-2",
+      "title": "3D printable high-performance conducting polymer hydrogel for all-hydrogel bioelectronic interfaces",
+      "journal": "Nature Materials",
+      "first_author": "Tao Zhou",
+      "year": 2023,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41563-023-01569-2/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41563-023-01569-2/MediaObjects/41563_2023_1569_Fig1_HTML.png",
+      "theme": "soft-materials",
+      "figure_title": "Fig. 1: Design and implementation of the BC-CPH.",
+      "image_size_px": [
+        2165,
+        1772
+      ],
+      "sha256": "c537812580236a9116f833dc01c814f651efcdb1c0ae7a6e699503621bc6181a",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper network models. Blue distinguishes the conducting network from its neutral counterpart.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            0.24
+          ],
+          "colors": [
+            {
+              "hex": "#283991"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41563-023-01697-9",
+      "title": "Nanoconfined polymerization limits crack propagation in hysteresis-free gels",
+      "journal": "Nature Materials",
+      "first_author": "Weizheng Li",
+      "year": 2023,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41563-023-01697-9/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41563-023-01697-9/MediaObjects/41563_2023_1697_Fig1_HTML.png",
+      "theme": "soft-materials",
+      "figure_title": "Fig. 1: Schematic illustration of the hysteresis-free and crack-propagation-insensitive hydrogels, ionogels and organogels prepared by the NCP strategy.",
+      "image_size_px": [
+        2126,
+        1915
+      ],
+      "sha256": "22ffd51670575e6923c07509495726932ff2417c04a19ffb561281f2ca7453c7",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Left and central network schematics. Distinct strand colors recur between enlarged and overview views.",
+          "relative_bbox": [
+            0,
+            0,
+            0.72,
+            0.59
+          ],
+          "colors": [
+            {
+              "hex": "#CCF1ED"
+            },
+            {
+              "hex": "#E8EDB6"
+            },
+            {
+              "hex": "#77C7E3"
+            },
+            {
+              "hex": "#DB0000"
+            },
+            {
+              "hex": "#56EBE9"
+            },
+            {
+              "hex": "#A5D9D5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41563-023-01649-3",
+      "title": "Hydrogel muscles powering reconfigurable micro-metastructures with wide-spectrum programmability",
+      "journal": "Nature Materials",
+      "first_author": "Mingchao Zhang",
+      "year": 2023,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41563-023-01649-3/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41563-023-01649-3/MediaObjects/41563_2023_1649_Fig1_HTML.png",
+      "theme": "soft-materials",
+      "figure_title": "Fig. 1: Concept of the proposed wide-spectrum programmability and the strategy of the reconfigurable micro-metamaterials actuated by a linearly responsive hydrogel muscle (LIHAM).",
+      "image_size_px": [
+        2169,
+        1668
+      ],
+      "sha256": "1dfe465d7d24d722486ae65cc64f6b1e478b864b03a0099db2725f093dea42da",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Top mechanism sequence. Colored building blocks retain identities through transformations.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            0.37
+          ],
+          "colors": [
+            {
+              "hex": "#FFE699"
+            },
+            {
+              "hex": "#C5B365"
+            },
+            {
+              "hex": "#FDAE61"
+            },
+            {
+              "hex": "#ABDDA4"
+            },
+            {
+              "hex": "#9E0142"
+            },
+            {
+              "hex": "#F46D43"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41563-023-01712-z",
+      "title": "Percolation-induced gel–gel phase separation in a dilute polymer network",
+      "journal": "Nature Materials",
+      "first_author": "Shohei Ishikawa",
+      "year": 2023,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41563-023-01712-z/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41563-023-01712-z/MediaObjects/41563_2023_1712_Fig1_HTML.png",
+      "theme": "soft-materials",
+      "figure_title": "Fig. 1: Schematic of the processes for yielding the dilute-percolated and c * gels.",
+      "image_size_px": [
+        1525,
+        817
+      ],
+      "sha256": "9db03a11b1ac8ebd786f8878267d4acd0879b4d914dde52a72dedbff14cf3403",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Left droplet cartoons only. Cyan and magenta distinguish the two gel phases.",
+          "relative_bbox": [
+            0,
+            0,
+            0.24,
+            0.98
+          ],
+          "colors": [
+            {
+              "hex": "#E287B5"
+            },
+            {
+              "hex": "#70CEC8"
+            },
+            {
+              "hex": "#00A2FF"
+            },
+            {
+              "hex": "#649AA8"
+            },
+            {
+              "hex": "#A3739D"
+            },
+            {
+              "hex": "#FAFF32"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41563-025-02146-5",
+      "title": "Stiff and self-healing hydrogels by polymer entanglements in co-planar nanoconfinement",
+      "journal": "Nature Materials",
+      "first_author": "Liang Chen",
+      "year": 2025,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41563-025-02146-5/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41563-025-02146-5/MediaObjects/41563_2025_2146_Fig1_HTML.png",
+      "theme": "soft-materials",
+      "figure_title": "Fig. 1: Nanoconfined hydrogels based on PAAm polymer entanglements within co-planar monodomain LC nanosheet scaffold.",
+      "image_size_px": [
+        1809,
+        1731
+      ],
+      "sha256": "dd1ac7ef02db178da33ab0e9d6bba69afa1b7335b0b784bfc802111ad6df895e",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper mechanism strip. Cool layered shapes and a warm accent distinguish material constituents.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            0.215
+          ],
+          "colors": [
+            {
+              "hex": "#4D7AAF"
+            },
+            {
+              "hex": "#DD7947"
+            },
+            {
+              "hex": "#D6DD7B"
+            },
+            {
+              "hex": "#979C5A"
+            },
+            {
+              "hex": "#F2966B"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41586-025-09269-4",
+      "title": "Data-driven de novo design of super-adhesive hydrogels",
+      "journal": "Nature",
+      "first_author": "Hongguang Liao",
+      "year": 2025,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41586-025-09269-4/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-025-09269-4/MediaObjects/41586_2025_9269_Fig1_HTML.png",
+      "theme": "soft-materials",
+      "figure_title": "Fig. 1: Data-driven de novo design of underwater adhesive hydrogels.",
+      "image_size_px": [
+        2167,
+        750
+      ],
+      "sha256": "9449c979b515a9f5d5e7abcc9ce7af31924d6007f4f5f0be33166a9b66690e83",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Left design cycle. Blue and orange components repeat between workflow icons.",
+          "relative_bbox": [
+            0,
+            0,
+            0.68,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#5D88D2"
+            },
+            {
+              "hex": "#FF8000"
+            },
+            {
+              "hex": "#1A6FDF"
+            },
+            {
+              "hex": "#F4B183"
+            },
+            {
+              "hex": "#4FBDFF"
+            },
+            {
+              "hex": "#01B0F0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41467-024-46774-y",
+      "title": "Microinterfaces in biopolymer-based bicontinuous hydrogels guide rapid 3D cell migration",
+      "journal": "Nature Communications",
+      "first_author": "Karen L. Xu",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41467-024-46774-y/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-024-46774-y/MediaObjects/41467_2024_46774_Fig1_HTML.png",
+      "theme": "soft-materials",
+      "figure_title": "Fig. 1: Fabrication of biopolymer-based bicontinuous hydrogels.",
+      "image_size_px": [
+        1988,
+        1510
+      ],
+      "sha256": "16b24eb0fdc9071bcebfb40555c3882d81d1ab5506fb6d94f7079edaeba34387",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper process strip only. Purple and pink recur across the network transformation.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            0.19
+          ],
+          "colors": [
+            {
+              "hex": "#922790"
+            },
+            {
+              "hex": "#B586BC"
+            },
+            {
+              "hex": "#F5A5C0"
+            },
+            {
+              "hex": "#BF232E"
+            },
+            {
+              "hex": "#383896"
+            },
+            {
+              "hex": "#827DBC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41560-024-01529-3",
+      "title": "Molecular cation and low-dimensional perovskite surface passivation in perovskite solar cells",
+      "journal": "Nature Energy",
+      "first_author": "Sam Teale",
+      "year": 2024,
+      "figure": 6,
+      "figure_url": "https://www.nature.com/articles/s41560-024-01529-3/figures/6",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41560-024-01529-3/MediaObjects/41560_2024_1529_Fig6_HTML.png",
+      "theme": "energy-materials",
+      "figure_title": "Fig. 6: Passivation mechanisms.",
+      "image_size_px": [
+        2170,
+        1283
+      ],
+      "sha256": "5f0d95d8394a6b7a8a81c00d9878e12ba4e0dd0d327447bf94fc247bf1f06130",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper-left atomic model. Warm atom colors sit against a neutral lattice background.",
+          "relative_bbox": [
+            0,
+            0,
+            0.42,
+            0.4
+          ],
+          "colors": [
+            {
+              "hex": "#A06E39"
+            },
+            {
+              "hex": "#C9A988"
+            },
+            {
+              "hex": "#E6D7C5"
+            },
+            {
+              "hex": "#694C2F"
+            },
+            {
+              "hex": "#B68D62"
+            },
+            {
+              "hex": "#3D4F6A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41560-024-01667-8",
+      "title": "Homogeneous coverage of the low-dimensional perovskite passivation layer for formamidinium–caesium perovskite solar modules",
+      "journal": "Nature Energy",
+      "first_author": "Jing Li",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41560-024-01667-8/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41560-024-01667-8/MediaObjects/41560_2024_1667_Fig1_HTML.png",
+      "theme": "energy-materials",
+      "figure_title": "Fig. 1: Compositional engineering of the 2D perovskite phase for scalable solar modules.",
+      "image_size_px": [
+        2165,
+        1306
+      ],
+      "sha256": "6f1759c993ad77dca309ad2c6d26c20aa0f3e08b2d4b5b3b047534a73c68258f",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper-right cell-stack illustration. Thin, distinct fills distinguish neighboring layers.",
+          "relative_bbox": [
+            0.67,
+            0,
+            1,
+            0.26
+          ],
+          "colors": [
+            {
+              "hex": "#BDA972"
+            },
+            {
+              "hex": "#FBA76E"
+            },
+            {
+              "hex": "#8D5E3E"
+            },
+            {
+              "hex": "#EFA3E9"
+            },
+            {
+              "hex": "#855C83"
+            },
+            {
+              "hex": "#FFEF9F"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41560-023-01220-z",
+      "title": "Surface in situ reconstruction of inorganic perovskite films enabling long carrier lifetimes and solar cells with 21% efficiency",
+      "journal": "Nature Energy",
+      "first_author": "Xinbo Chu",
+      "year": 2023,
+      "figure": 3,
+      "figure_url": "https://www.nature.com/articles/s41560-023-01220-z/figures/3",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41560-023-01220-z/MediaObjects/41560_2023_1220_Fig3_HTML.png",
+      "theme": "energy-materials",
+      "figure_title": "Fig. 3: SISR mechanisms and the formation of graded heterojunctions.",
+      "image_size_px": [
+        1829,
+        1175
+      ],
+      "sha256": "b43d374ba29dd9531a3a55464d823589db468d3ed0b3fca77a1a86e5e0da75b0",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper-left surface structures. Two atom colors are used repeatedly across the two states.",
+          "relative_bbox": [
+            0,
+            0,
+            0.55,
+            0.43
+          ],
+          "colors": [
+            {
+              "hex": "#C68484"
+            },
+            {
+              "hex": "#835859"
+            },
+            {
+              "hex": "#6184C5"
+            },
+            {
+              "hex": "#455A83"
+            },
+            {
+              "hex": "#FAABAB"
+            },
+            {
+              "hex": "#6A8092"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41560-024-01579-7",
+      "title": "Barrier reinforcement for enhanced perovskite solar cell stability under reverse bias",
+      "journal": "Nature Energy",
+      "first_author": "Nengxu Li",
+      "year": 2024,
+      "figure": 3,
+      "figure_url": "https://www.nature.com/articles/s41560-024-01579-7/figures/3",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41560-024-01579-7/MediaObjects/41560_2024_1579_Fig3_HTML.png",
+      "theme": "energy-materials",
+      "figure_title": "Fig. 3: The pathways to reinforce ion migration and the charge injection barrier.",
+      "image_size_px": [
+        1791,
+        1582
+      ],
+      "sha256": "8caac1e3237951bd5c242b4a3cb8f738bf35bff8842a3d792a8917722dee9150",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Lower-right stack diagrams. Repeated stripes maintain layer identities in the enlarged schematic.",
+          "relative_bbox": [
+            0.49,
+            0.68,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#EAC0CC"
+            },
+            {
+              "hex": "#98B6EA"
+            },
+            {
+              "hex": "#B4DE98"
+            },
+            {
+              "hex": "#FFE66F"
+            },
+            {
+              "hex": "#B57DB5"
+            },
+            {
+              "hex": "#8EA2BC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41586-024-07705-5",
+      "title": "Water- and heat-activated dynamic passivation for perovskite photovoltaics",
+      "journal": "Nature",
+      "first_author": "Wei‐Ting Wang",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41586-024-07705-5/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-024-07705-5/MediaObjects/41586_2024_7705_Fig1_HTML.png",
+      "theme": "energy-materials",
+      "figure_title": "Fig. 1: Dynamic reaction, hydrolysis and redox shuttle of HUBLA.",
+      "image_size_px": [
+        2128,
+        2057
+      ],
+      "sha256": "ad63a010f92b633c0000549aedab428e08af9a77c411f3169e287d7b951cc945",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Central molecular mechanism sequence. Gray support and colored atomic sites recur across states.",
+          "relative_bbox": [
+            0,
+            0.32,
+            1,
+            0.77
+          ],
+          "colors": [
+            {
+              "hex": "#D3757B"
+            },
+            {
+              "hex": "#ABC8FB"
+            },
+            {
+              "hex": "#E7AC7D"
+            },
+            {
+              "hex": "#D8E5FD"
+            },
+            {
+              "hex": "#5595C4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41561-024-01513-2",
+      "title": "Craton deformation from flat-slab subduction and rollback",
+      "journal": "Nature Geoscience",
+      "first_author": "Shaofeng Liu",
+      "year": 2024,
+      "figure": 4,
+      "figure_url": "https://www.nature.com/articles/s41561-024-01513-2/figures/4",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41561-024-01513-2/MediaObjects/41561_2024_1513_Fig4_HTML.png",
+      "theme": "geoscience",
+      "figure_title": "Fig. 4: Conceptual model illustrating LMW formation and its relationship with craton deformation.",
+      "image_size_px": [
+        2168,
+        1858
+      ],
+      "sha256": "4d74bebcd4ac1e115f33c7f7b20d31887c145fb0d592eaf8fe32203f883d24a5",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Four geological block diagrams. Cool slab colors and warm upper layers remain consistent across stages.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#F7C7B8"
+            },
+            {
+              "hex": "#9ED8F5"
+            },
+            {
+              "hex": "#58DCFE"
+            },
+            {
+              "hex": "#28D3FE"
+            },
+            {
+              "hex": "#C6F2FD"
+            },
+            {
+              "hex": "#9833CB"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41561-024-01570-7",
+      "title": "Enhanced ocean CO2 uptake due to near-surface temperature gradients",
+      "journal": "Nature Geoscience",
+      "first_author": "Daniel J. Ford",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41561-024-01570-7/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41561-024-01570-7/MediaObjects/41561_2024_1570_Fig1_HTML.png",
+      "theme": "geoscience",
+      "figure_title": "Fig. 1: Schematic indicating the modulation of air–sea CO 2 fluxes by vertical temperature gradients.",
+      "image_size_px": [
+        1505,
+        817
+      ],
+      "sha256": "147e6cf9f433b79259f3cee62a920418336663f920f6128e26f8942f3d84aaf7",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Sea-surface cross-section. Blue indicates the water body; warm highlights call out processes and regions.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#B4C7E7"
+            },
+            {
+              "hex": "#FFC000"
+            },
+            {
+              "hex": "#FF0000"
+            },
+            {
+              "hex": "#00B0F0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41561-021-00764-7",
+      "title": "Rapid recycling of subducted sedimentary carbon revealed by Afghanistan carbonatite volcano",
+      "journal": "Nature Geoscience",
+      "first_author": "Forrest Horton",
+      "year": 2021,
+      "figure": 4,
+      "figure_url": "https://www.nature.com/articles/s41561-021-00764-7/figures/4",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41561-021-00764-7/MediaObjects/41561_2021_764_Fig4_HTML.png",
+      "theme": "geoscience",
+      "figure_title": "Fig. 4: Schematic cross-section of the eastern Makran subduction zone.",
+      "image_size_px": [
+        1027,
+        660
+      ],
+      "sha256": "2e114bf6c1a07c0e0d03c69d3805a6f307066bf7c102ee8853f2e80e5c887035",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Subduction cross-section. Layer colors track depth and lithologic units across the section.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#A97933"
+            },
+            {
+              "hex": "#D5A933"
+            },
+            {
+              "hex": "#FFE5AD"
+            },
+            {
+              "hex": "#D9C288"
+            },
+            {
+              "hex": "#90A5B0"
+            },
+            {
+              "hex": "#5D7C88"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41592-024-02408-1",
+      "title": "Mapping cellular interactions from spatially resolved transcriptomics data",
+      "journal": "Nature Methods",
+      "first_author": "James J. Zhu",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41592-024-02408-1/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41592-024-02408-1/MediaObjects/41592_2024_2408_Fig1_HTML.png",
+      "theme": "cell-workflow",
+      "figure_title": "Fig. 1: The Spacia model.",
+      "image_size_px": [
+        2168,
+        2245
+      ],
+      "sha256": "9c0bed53c9646d8c4b8c9001d2816cd67d330a6bffee5f89aafd1d828e2bcc0b",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper model workflow. Different cell types retain their colors between the spatial and network views.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            0.39
+          ],
+          "colors": [
+            {
+              "hex": "#C6B9F1"
+            },
+            {
+              "hex": "#BDDCB2"
+            },
+            {
+              "hex": "#F19695"
+            },
+            {
+              "hex": "#D76D6F"
+            },
+            {
+              "hex": "#00CDFF"
+            },
+            {
+              "hex": "#425065"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41592-024-02463-8",
+      "title": "Interpretable spatially aware dimension reduction of spatial transcriptomics with STAMP",
+      "journal": "Nature Methods",
+      "first_author": "Chengwei Zhong",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41592-024-02463-8/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41592-024-02463-8/MediaObjects/41592_2024_2463_Fig1_HTML.png",
+      "theme": "cell-workflow",
+      "figure_title": "Fig. 1: Interpretable deep generative model for spatial transcriptomics analysis.",
+      "image_size_px": [
+        2170,
+        1247
+      ],
+      "sha256": "3b431ca1aaa9910ea7998ba5c40ec43c7089484c9397972e447b536a278424a0",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper workflow. A small number of colored modules distinguish inference components.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            0.5
+          ],
+          "colors": [
+            {
+              "hex": "#ABEFEC"
+            },
+            {
+              "hex": "#FFE8CB"
+            },
+            {
+              "hex": "#33CCCC"
+            },
+            {
+              "hex": "#BCDFAC"
+            },
+            {
+              "hex": "#70AD47"
+            },
+            {
+              "hex": "#00B050"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41592-024-02284-9",
+      "title": "Accurate and efficient integrative reference-informed spatial domain detection for spatial transcriptomics",
+      "journal": "Nature Methods",
+      "first_author": "Ying Ma",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41592-024-02284-9/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41592-024-02284-9/MediaObjects/41592_2024_2284_Fig1_HTML.png",
+      "theme": "cell-workflow",
+      "figure_title": "Fig. 1: Schematic overview of IRIS.",
+      "image_size_px": [
+        1836,
+        1165
+      ],
+      "sha256": "ac79e098d0eef09d4c6f2b275eb331614acebcde2172803f0c0c46b9458233c3",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Spatial-domain inference diagram. Pale containers group steps; repeated category colors link inputs and outputs.",
+          "relative_bbox": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#AFCED1"
+            },
+            {
+              "hex": "#EA958E"
+            },
+            {
+              "hex": "#E07A5F"
+            },
+            {
+              "hex": "#7FB39B"
+            },
+            {
+              "hex": "#F4CC8F"
+            },
+            {
+              "hex": "#64BED2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41592-024-02501-5",
+      "title": "Repurposing large-format microarrays for scalable spatial transcriptomics",
+      "journal": "Nature Methods",
+      "first_author": "Denis Cipurko",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41592-024-02501-5/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41592-024-02501-5/MediaObjects/41592_2024_2501_Fig1_HTML.png",
+      "theme": "cell-workflow",
+      "figure_title": "Fig. 1: On-slide assembly of spatially barcoded mRNA capture probes using microarrays.",
+      "image_size_px": [
+        2162,
+        1420
+      ],
+      "sha256": "9c36da8712496fd6413dcccd19d7737d95f77aae3c76466dd3e3506832ccd48b",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Upper-left experimental workflow. Colored probe segments retain identities across assembly stages.",
+          "relative_bbox": [
+            0,
+            0,
+            0.51,
+            0.6
+          ],
+          "colors": [
+            {
+              "hex": "#D2B6D7"
+            },
+            {
+              "hex": "#676FB3"
+            },
+            {
+              "hex": "#67B0D5"
+            },
+            {
+              "hex": "#FAAD23"
+            },
+            {
+              "hex": "#D1E7F2"
+            },
+            {
+              "hex": "#494A9B"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41594-024-01264-z",
+      "title": "Structure of the γ-tubulin ring complex-capped microtubule",
+      "journal": "Nature Structural & Molecular Biology",
+      "first_author": "Amol Aher",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41594-024-01264-z/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41594-024-01264-z/MediaObjects/41594_2024_1264_Fig1_HTML.png",
+      "theme": "molecular-structure",
+      "figure_title": "Fig. 1: Cryo-EM of γ-TuRC-capped microtubules reveals selective nucleation of 13-protofilament microtubules.",
+      "image_size_px": [
+        1536,
+        2515
+      ],
+      "sha256": "b074a51e991c43df408e8df49824e95dc4f5ed193f7ba01e3070ff20b865534d",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Lower molecular surfaces. Muted pink, green and violet distinguish adjacent components.",
+          "relative_bbox": [
+            0,
+            0.52,
+            1,
+            1
+          ],
+          "colors": [
+            {
+              "hex": "#9AC75A"
+            },
+            {
+              "hex": "#F1B9D0"
+            },
+            {
+              "hex": "#7279B0"
+            },
+            {
+              "hex": "#759A43"
+            },
+            {
+              "hex": "#555A89"
+            },
+            {
+              "hex": "#CC9DB2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41594-024-01477-2",
+      "title": "Fascin structural plasticity mediates flexible actin bundle construction",
+      "journal": "Nature Structural & Molecular Biology",
+      "first_author": "Rui Gong",
+      "year": 2025,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41594-024-01477-2/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41594-024-01477-2/MediaObjects/41594_2024_1477_Fig1_HTML.png",
+      "theme": "molecular-structure",
+      "figure_title": "Fig. 1: Cryo-EM structure of fascin cross-linking actin filaments.",
+      "image_size_px": [
+        1831,
+        2031
+      ],
+      "sha256": "0673f3260e3b96a07972c07f77d5ca6eb83a1cbcb4c2ee5d368b4492e58832ec",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Central structure surface views. Subunit colors remain consistent under rotation.",
+          "relative_bbox": [
+            0,
+            0.32,
+            1,
+            0.7
+          ],
+          "colors": [
+            {
+              "hex": "#73ABFE"
+            },
+            {
+              "hex": "#CAFBFE"
+            },
+            {
+              "hex": "#5AA95A"
+            },
+            {
+              "hex": "#3AEAFE"
+            },
+            {
+              "hex": "#FF8958"
+            },
+            {
+              "hex": "#81FEFB"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41565-024-01804-0",
+      "title": "Engineering modular and tunable single-molecule sensors by decoupling sensing from signal output",
+      "journal": "Nature Nanotechnology",
+      "first_author": "Lennart Grabenhorst",
+      "year": 2024,
+      "figure": 1,
+      "figure_url": "https://www.nature.com/articles/s41565-024-01804-0/figures/1",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41565-024-01804-0/MediaObjects/41565_2024_1804_Fig1_HTML.png",
+      "theme": "molecular-structure",
+      "figure_title": "Fig. 1: Design of the modular biosensor platform.",
+      "image_size_px": [
+        1809,
+        556
+      ],
+      "sha256": "90994a5ca976378e2864eed8d4f2021087d034b180b86e7feb04d472af3ba60d",
+      "sampling_method": "flat-fill-median",
+      "regions": [
+        {
+          "scope": "Left molecular sensor cartoons. Two small colored sites sit on a neutral structural outline.",
+          "relative_bbox": [
+            0,
+            0,
+            0.42,
+            0.96
+          ],
+          "colors": [
+            {
+              "hex": "#FEA380"
+            },
+            {
+              "hex": "#7371CB"
+            },
+            {
+              "hex": "#6A9CFF"
+            },
+            {
+              "hex": "#E6007D"
+            },
+            {
+              "hex": "#00FF00"
+            },
+            {
+              "hex": "#CBA9BB"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.aea3538",
+      "title": "17-GHz lossless InP-membrane active metasurface.",
+      "year": 2025,
+      "first_author": "Fukui T",
+      "figure": "Fig. 1. Concept of the proposed InP-membrane active metasurface",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12680059/figure/F1/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/279f/12680059/076405918227/sciadv.aea3538-f1.jpg",
+      "image_size_px": [
+        800,
+        580
+      ],
+      "journal": "Science Advances",
+      "theme": "photonics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "中央有源超表面器件与光束示意",
+          "relative_bbox": [
+            0.29,
+            0.08,
+            0.69,
+            0.61
+          ],
+          "colors": [
+            {
+              "hex": "#517052",
+              "bin_fraction": 0.0634
+            },
+            {
+              "hex": "#B9AE80",
+              "bin_fraction": 0.0458
+            },
+            {
+              "hex": "#B4C9D1",
+              "bin_fraction": 0.0419
+            },
+            {
+              "hex": "#808BFC",
+              "bin_fraction": 0.0331
+            },
+            {
+              "hex": "#FC9BC9",
+              "bin_fraction": 0.0312
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adx7090",
+      "title": "A space-time holographic metasurface antenna.",
+      "year": 2025,
+      "first_author": "Wu GB",
+      "figure": "Fig. 1. Space-time HMA",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13155563/figure/F1/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/5df1/13155563/b3ceb6fae1a7/sciadv.adx7090-f1.jpg",
+      "image_size_px": [
+        787,
+        716
+      ],
+      "journal": "Science Advances",
+      "theme": "photonics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "左上全息成像概念示意",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.53,
+            0.66
+          ],
+          "colors": [
+            {
+              "hex": "#08223C",
+              "bin_fraction": 0.1076
+            },
+            {
+              "hex": "#0C3B6B",
+              "bin_fraction": 0.0378
+            },
+            {
+              "hex": "#11579A",
+              "bin_fraction": 0.0331
+            },
+            {
+              "hex": "#37CBF8",
+              "bin_fraction": 0.0248
+            },
+            {
+              "hex": "#239DE4",
+              "bin_fraction": 0.0175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adv2820",
+      "title": "Scalable metasurface-enhanced supercool cement.",
+      "year": 2025,
+      "first_author": "Lu G",
+      "figure": "Fig. 1. Scalable structural supercool cement",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12366681/figure/F1/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/614a/12366681/8a0fc33c7e47/sciadv.adv2820-f1.jpg",
+      "image_size_px": [
+        756,
+        694
+      ],
+      "journal": "Science Advances",
+      "theme": "cement-surface",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "左上水泥表面工程的分层材料图",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.6,
+            0.26
+          ],
+          "colors": [
+            {
+              "hex": "#6572B6",
+              "bin_fraction": 0.1753
+            },
+            {
+              "hex": "#EBE0B7",
+              "bin_fraction": 0.0921
+            },
+            {
+              "hex": "#C6BB98",
+              "bin_fraction": 0.0387
+            },
+            {
+              "hex": "#C7CFE4",
+              "bin_fraction": 0.0367
+            },
+            {
+              "hex": "#FCF8DD",
+              "bin_fraction": 0.0244
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adx8006",
+      "title": "A multi-agentic framework for real-time, autonomous freeform metasurface design.",
+      "year": 2025,
+      "first_author": "Lupoiu R",
+      "figure": "Fig. 2. Photonics design agent evaluation on a graduate-level nanophotonics knowledge and optimization benchmark",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12577674/figure/F2/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/350d/12577674/263b67821b30/sciadv.adx8006-f2.jpg",
+      "image_size_px": [
+        750,
+        1017
+      ],
+      "journal": "Science Advances",
+      "theme": "computational-workflow",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "上部系统流程方框与连线",
+          "relative_bbox": [
+            0.02,
+            0.02,
+            0.97,
+            0.25
+          ],
+          "colors": [
+            {
+              "hex": "#DCEAF7",
+              "bin_fraction": 0.6209
+            },
+            {
+              "hex": "#35495D",
+              "bin_fraction": 0.0475
+            },
+            {
+              "hex": "#728291",
+              "bin_fraction": 0.0194
+            },
+            {
+              "hex": "#E74E3E",
+              "bin_fraction": 0.0093
+            },
+            {
+              "hex": "#FBCECC",
+              "bin_fraction": 0.0064
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adz5123",
+      "title": "Vector analog computing via on-demand metasurface dispersive polarization transformation.",
+      "year": 2025,
+      "first_author": "Yang H",
+      "figure": "Fig. 1. Metasurface-empowered vector analog computing with polarization",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525772/figure/F1/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/6387/12525772/bae1253a81aa/sciadv.adz5123-f1.jpg",
+      "image_size_px": [
+        782,
+        685
+      ],
+      "journal": "Science Advances",
+      "theme": "photonics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "左下偏振光学计算示意面板",
+          "relative_bbox": [
+            0.02,
+            0.31,
+            0.67,
+            0.96
+          ],
+          "colors": [
+            {
+              "hex": "#D1E5F5",
+              "bin_fraction": 0.2009
+            },
+            {
+              "hex": "#84B599",
+              "bin_fraction": 0.0461
+            },
+            {
+              "hex": "#569A9A",
+              "bin_fraction": 0.0163
+            },
+            {
+              "hex": "#9BC9F5",
+              "bin_fraction": 0.01
+            },
+            {
+              "hex": "#6AB7E4",
+              "bin_fraction": 0.0085
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2502036122",
+      "title": "Combinatorial asymmetric acoustic metamaterials with real-time programmability.",
+      "year": 2025,
+      "first_author": "Keogh MR",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12685028/figure/fig01/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/42b2/12685028/3381e4dbb8a2/pnas.2502036122fig01.jpg",
+      "image_size_px": [
+        4208,
+        2972
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "metamaterial",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "C 面板可组合声学单元设计空间",
+          "relative_bbox": [
+            0.23,
+            0.03,
+            0.8,
+            0.61
+          ],
+          "colors": [
+            {
+              "hex": "#C1E5FD",
+              "bin_fraction": 0.5547
+            },
+            {
+              "hex": "#80959A",
+              "bin_fraction": 0.1227
+            },
+            {
+              "hex": "#336FFD",
+              "bin_fraction": 0.0336
+            },
+            {
+              "hex": "#C73902",
+              "bin_fraction": 0.0231
+            },
+            {
+              "hex": "#B841F2",
+              "bin_fraction": 0.0172
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2504304122",
+      "title": "Training and retraining liquid crystal elastomer metamaterials for pluripotent functionality.",
+      "year": 2025,
+      "first_author": "Gowen SD",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12304956/figure/fig01/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0632/12304956/aad364c1f6dc/pnas.2504304122fig01.jpg",
+      "image_size_px": [
+        787,
+        1683
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "metamaterial",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A 面板液晶弹性体的微观结构与分子取向",
+          "relative_bbox": [
+            0.04,
+            0.03,
+            0.97,
+            0.26
+          ],
+          "colors": [
+            {
+              "hex": "#C2E1FE",
+              "bin_fraction": 0.5516
+            },
+            {
+              "hex": "#090AFC",
+              "bin_fraction": 0.0772
+            },
+            {
+              "hex": "#E20B05",
+              "bin_fraction": 0.0292
+            },
+            {
+              "hex": "#97B4CF",
+              "bin_fraction": 0.0154
+            },
+            {
+              "hex": "#526373",
+              "bin_fraction": 0.0096
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2425200122",
+      "title": "Rippled metamaterials with scale-dependent tailorable elasticity.",
+      "year": 2025,
+      "first_author": "Zhou J",
+      "figure": "Fig. 3",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11962411/figure/fig03/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/566a/11962411/30f05990ab8d/pnas.2425200122fig03.jpg",
+      "image_size_px": [
+        3550,
+        2629
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "metamaterial",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "B 面板梁弯曲响应的示意曲线",
+          "relative_bbox": [
+            0.47,
+            0.04,
+            0.73,
+            0.33
+          ],
+          "colors": [
+            {
+              "hex": "#62B3FE",
+              "bin_fraction": 0.1873
+            },
+            {
+              "hex": "#FEB811",
+              "bin_fraction": 0.1783
+            },
+            {
+              "hex": "#FD1B49",
+              "bin_fraction": 0.1733
+            },
+            {
+              "hex": "#5DF625",
+              "bin_fraction": 0.161
+            },
+            {
+              "hex": "#587370",
+              "bin_fraction": 0.055
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2408974121",
+      "title": "Atomic-engineered gradient tunable solid-state metamaterials.",
+      "year": 2024,
+      "first_author": "Yan Z",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11441542/figure/fig01/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/00bb/11441542/fb1c15a09f9d/pnas.2408974121fig01.jpg",
+      "image_size_px": [
+        4134,
+        1886
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "metamaterial",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "C 面板原子移动与梯度材料示意",
+          "relative_bbox": [
+            0.01,
+            0.58,
+            0.98,
+            0.97
+          ],
+          "colors": [
+            {
+              "hex": "#E2FD07",
+              "bin_fraction": 0.0803
+            },
+            {
+              "hex": "#233C05",
+              "bin_fraction": 0.0553
+            },
+            {
+              "hex": "#50FDB5",
+              "bin_fraction": 0.0377
+            },
+            {
+              "hex": "#3E6904",
+              "bin_fraction": 0.0343
+            },
+            {
+              "hex": "#3AFC09",
+              "bin_fraction": 0.0281
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.aea1867",
+      "title": "Stretchable complementary integrated electronics based on elastic dual-type transistors.",
+      "year": 2025,
+      "first_author": "Zhang Y",
+      "figure": "Fig. 1. Materials, characterization, and fabrication",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12594169/figure/F1/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/355d/12594169/603e37ae54a5/sciadv.aea1867-f1.jpg",
+      "image_size_px": [
+        800,
+        667
+      ],
+      "journal": "Science Advances",
+      "theme": "electronics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A 面板左侧可拉伸晶体管爆炸分层示意",
+          "relative_bbox": [
+            0.01,
+            0.02,
+            0.4,
+            0.48
+          ],
+          "colors": [
+            {
+              "hex": "#DED19A",
+              "bin_fraction": 0.4459
+            },
+            {
+              "hex": "#4141C5",
+              "bin_fraction": 0.1882
+            },
+            {
+              "hex": "#8486C9",
+              "bin_fraction": 0.008
+            },
+            {
+              "hex": "#B4B4E5",
+              "bin_fraction": 0.0059
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/advs.202303949",
+      "title": "Machine Learning-Enabled Tactile Sensor Design for Dynamic Touch Decoding.",
+      "year": 2023,
+      "first_author": "Lu Y",
+      "figure": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10646241/figure/advs6456-fig-0001/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7d78/10646241/cbcff0eb3032/ADVS-10-2303949-g001.jpg",
+      "image_size_px": [
+        546,
+        354
+      ],
+      "journal": "Advanced Science",
+      "theme": "sensing",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "手部触觉传感器概念示意，含肤色",
+          "relative_bbox": [
+            0.04,
+            0.02,
+            0.28,
+            0.41
+          ],
+          "colors": [
+            {
+              "hex": "#B6976F",
+              "bin_fraction": 0.1363
+            },
+            {
+              "hex": "#E0B686",
+              "bin_fraction": 0.0745
+            },
+            {
+              "hex": "#C96C51",
+              "bin_fraction": 0.0229
+            },
+            {
+              "hex": "#F7E3CC",
+              "bin_fraction": 0.0227
+            },
+            {
+              "hex": "#877254",
+              "bin_fraction": 0.0047
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/advs.202307693",
+      "title": "A Multifunctional Flexible Tactile Sensor Based on Resistive Effect for Simultaneous Sensing of Pressure and Temperature.",
+      "year": 2024,
+      "first_author": "Zhu H",
+      "figure": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10853712/figure/advs7298-fig-0001/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/adb7/10853712/c4440baf1c92/ADVS-11-2307693-g004.jpg",
+      "image_size_px": [
+        546,
+        644
+      ],
+      "journal": "Advanced Science",
+      "theme": "sensing",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "左中柔性传感器阵列分层结构",
+          "relative_bbox": [
+            0.02,
+            0.3,
+            0.65,
+            0.72
+          ],
+          "colors": [
+            {
+              "hex": "#F2B71E",
+              "bin_fraction": 0.0736
+            },
+            {
+              "hex": "#CB9D3A",
+              "bin_fraction": 0.0652
+            },
+            {
+              "hex": "#3FC1C4",
+              "bin_fraction": 0.04
+            },
+            {
+              "hex": "#856828",
+              "bin_fraction": 0.0365
+            },
+            {
+              "hex": "#F5C14D",
+              "bin_fraction": 0.0174
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41566-025-01640-1",
+      "title": "Spatio-spectral optical fission in time-varying subwavelength layers.",
+      "year": 2025,
+      "first_author": "Jaffray W",
+      "figure": "Fig. 2. Experimental setup",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12141041/figure/Fig2/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/abae/12141041/7a8b411bfc7f/41566_2025_1640_Fig2_HTML.jpg",
+      "image_size_px": [
+        713,
+        239
+      ],
+      "journal": "Nature Photonics",
+      "theme": "optics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "光学实验的脉冲光路与组件",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.99,
+            0.96
+          ],
+          "colors": [
+            {
+              "hex": "#4473C5",
+              "bin_fraction": 0.4195
+            },
+            {
+              "hex": "#FE7038",
+              "bin_fraction": 0.0634
+            },
+            {
+              "hex": "#FEB89C",
+              "bin_fraction": 0.0349
+            },
+            {
+              "hex": "#FEE7DE",
+              "bin_fraction": 0.0349
+            },
+            {
+              "hex": "#424F67",
+              "bin_fraction": 0.0226
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41566-024-01546-4",
+      "title": "Quantum state processing through controllable synthetic temporal photonic lattices.",
+      "year": 2025,
+      "first_author": "Monika M",
+      "figure": "Fig. 1. Illustration of entangled state preparation and quantum interference with the coupled fibre-loop system",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11706774/figure/Fig1/",
+      "image_url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/0edb/11706774/ab0b571694fe/41566_2024_1546_Fig1_HTML.jpg",
+      "image_size_px": [
+        722,
+        464
+      ],
+      "journal": "Nature Photonics",
+      "theme": "optics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "左下光纤回路与双脉冲量子行走示意",
+          "relative_bbox": [
+            0.04,
+            0.51,
+            0.61,
+            0.95
+          ],
+          "colors": [
+            {
+              "hex": "#F8CCCD",
+              "bin_fraction": 0.2129
+            },
+            {
+              "hex": "#E0C9A2",
+              "bin_fraction": 0.0399
+            },
+            {
+              "hex": "#F99C9E",
+              "bin_fraction": 0.0382
+            },
+            {
+              "hex": "#B49C6F",
+              "bin_fraction": 0.0147
+            },
+            {
+              "hex": "#C8D0E9",
+              "bin_fraction": 0.0084
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2511724122",
+      "title": "Microfluidic networks using isotachophoresis.",
+      "year": 2025,
+      "first_author": "Avaro AS",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12626016/figure/fig01/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12626016.1/pnas.2511724122fig01.jpg",
+      "image_size_px": [
+        802,
+        1018
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "microfluidics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: chip and electrolyte zones in the experimental setup",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.98,
+            0.39
+          ],
+          "colors": [
+            {
+              "hex": "#6221FC",
+              "bin_fraction": 0.3731
+            },
+            {
+              "hex": "#046303",
+              "bin_fraction": 0.0568
+            },
+            {
+              "hex": "#CA3605",
+              "bin_fraction": 0.0532
+            },
+            {
+              "hex": "#030142",
+              "bin_fraction": 0.0382
+            },
+            {
+              "hex": "#CF0506",
+              "bin_fraction": 0.0253
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2423682122",
+      "title": "Modeling human retinal ganglion cell axonal outgrowth, development, and pathology using pluripotent stem cell-based microfluidic platforms.",
+      "year": 2025,
+      "first_author": "Gomes C",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12452894/figure/fig01/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12452894.1/pnas.2423682122fig01.jpg",
+      "image_size_px": [
+        695,
+        776
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "microfluidics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "Top paired schematic of culture dish and microfluidic cell device",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.98,
+            0.21
+          ],
+          "colors": [
+            {
+              "hex": "#AEC8ED",
+              "bin_fraction": 0.3425
+            },
+            {
+              "hex": "#C5EDD2",
+              "bin_fraction": 0.2956
+            },
+            {
+              "hex": "#AB88AC",
+              "bin_fraction": 0.036
+            },
+            {
+              "hex": "#8CAC95",
+              "bin_fraction": 0.0297
+            },
+            {
+              "hex": "#897C47",
+              "bin_fraction": 0.0235
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2417757122",
+      "title": "Microfluidic purification of genomic DNA.",
+      "year": 2025,
+      "first_author": "Wang J",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11789158/figure/fig01/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11789158.1/pnas.2417757122fig01.jpg",
+      "image_size_px": [
+        3737,
+        1728
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "microfluidics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "B: channel flow and illustrative particle trajectories",
+          "relative_bbox": [
+            0.01,
+            0.22,
+            0.5,
+            0.97
+          ],
+          "colors": [
+            {
+              "hex": "#0DFE02",
+              "bin_fraction": 0.3091
+            },
+            {
+              "hex": "#0409FD",
+              "bin_fraction": 0.2796
+            },
+            {
+              "hex": "#FB0104",
+              "bin_fraction": 0.1963
+            },
+            {
+              "hex": "#07CB03",
+              "bin_fraction": 0.0145
+            },
+            {
+              "hex": "#6A8480",
+              "bin_fraction": 0.0143
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1073/pnas.2506137122",
+      "title": "Remote analysis and management of sweat biomarkers using a wearable microfluidic sticker in adult cystic fibrosis patients.",
+      "year": 2025,
+      "first_author": "Nelson RS",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12377746/figure/fig01/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12377746.1/pnas.2506137122fig01.jpg",
+      "image_size_px": [
+        780,
+        341
+      ],
+      "journal": "Proceedings of the National Academy of Sciences",
+      "theme": "microfluidics",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "Wearable sweat patch and color-coded channels in right inset",
+          "relative_bbox": [
+            0.49,
+            0.04,
+            0.98,
+            0.98
+          ],
+          "colors": [
+            {
+              "hex": "#C5804F",
+              "bin_fraction": 0.2365
+            },
+            {
+              "hex": "#E3CAB5",
+              "bin_fraction": 0.0682
+            },
+            {
+              "hex": "#CEA385",
+              "bin_fraction": 0.0418
+            },
+            {
+              "hex": "#805487",
+              "bin_fraction": 0.0307
+            },
+            {
+              "hex": "#386564",
+              "bin_fraction": 0.0064
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.joule.2022.06.012",
+      "title": "A solar tower fuel plant for the thermochemical production of kerosene from H2O and CO2.",
+      "year": 2022,
+      "first_author": "Zoller S",
+      "figure": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9332358/figure/fig1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9332358.1/gr1.jpg",
+      "image_size_px": [
+        748,
+        242
+      ],
+      "journal": "Joule",
+      "theme": "energy",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: solar tower, incoming radiation and reactor flow",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.56,
+            0.99
+          ],
+          "colors": [
+            {
+              "hex": "#55A244",
+              "bin_fraction": 0.1193
+            },
+            {
+              "hex": "#CB1A1C",
+              "bin_fraction": 0.0908
+            },
+            {
+              "hex": "#E7C93B",
+              "bin_fraction": 0.0562
+            },
+            {
+              "hex": "#3957AF",
+              "bin_fraction": 0.0505
+            },
+            {
+              "hex": "#C2C5E7",
+              "bin_fraction": 0.0382
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1016/j.joule.2022.02.014",
+      "title": "Tin perovskite solar cells with >1,300 h of operational stability in N2 through a synergistic chemical engineering approach.",
+      "year": 2022,
+      "first_author": "Sanchez-Diaz J",
+      "figure": "Figure 3",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9097823/figure/fig3/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9097823.1/gr3.jpg",
+      "image_size_px": [
+        736,
+        308
+      ],
+      "journal": "Joule",
+      "theme": "energy",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: inset rendered as a stack of solar-cell layers",
+          "relative_bbox": [
+            0.087,
+            0.28,
+            0.31,
+            0.78
+          ],
+          "colors": [
+            {
+              "hex": "#6D4C15",
+              "bin_fraction": 0.0777
+            },
+            {
+              "hex": "#83869F",
+              "bin_fraction": 0.0559
+            },
+            {
+              "hex": "#836C36",
+              "bin_fraction": 0.0426
+            },
+            {
+              "hex": "#A5ACC6",
+              "bin_fraction": 0.0309
+            },
+            {
+              "hex": "#B1A152",
+              "bin_fraction": 0.0285
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/adma.202517616",
+      "title": "A Biochar-Based Composite Hydrogel Microenvironment for Enhanced Biocatalysis.",
+      "year": 2026,
+      "first_author": "Wang S",
+      "figure": "FIGURE 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13155258/figure/adma71936-fig-0001/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13155258.1/ADMA-38-e17616-g004.jpg",
+      "image_size_px": [
+        600,
+        434
+      ],
+      "journal": "Advanced Materials",
+      "theme": "materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "Upper panel illustrating the composite-gel process",
+          "relative_bbox": [
+            0.02,
+            0.01,
+            0.98,
+            0.6
+          ],
+          "colors": [
+            {
+              "hex": "#CDE5FB",
+              "bin_fraction": 0.0785
+            },
+            {
+              "hex": "#859CC8",
+              "bin_fraction": 0.0738
+            },
+            {
+              "hex": "#2C3A4D",
+              "bin_fraction": 0.0633
+            },
+            {
+              "hex": "#E69E9A",
+              "bin_fraction": 0.0302
+            },
+            {
+              "hex": "#ACBBDC",
+              "bin_fraction": 0.0221
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/adma.202516185",
+      "title": "Autonomous Spatiotemporal Regulation of Reversible Hydrogel Actuators by Chemical Reaction Networks.",
+      "year": 2026,
+      "first_author": "Liao F",
+      "figure": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12862747/figure/adma71492-fig-0001/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12862747.1/ADMA-38-e16185-g006.jpg",
+      "image_size_px": [
+        800,
+        837
+      ],
+      "journal": "Advanced Materials",
+      "theme": "materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "Reversible hydrogel actuation stages and reaction cartoons",
+          "relative_bbox": [
+            0.01,
+            0.02,
+            0.98,
+            0.98
+          ],
+          "colors": [
+            {
+              "hex": "#E0F8FE",
+              "bin_fraction": 0.3688
+            },
+            {
+              "hex": "#2B8A56",
+              "bin_fraction": 0.0378
+            },
+            {
+              "hex": "#50A3DD",
+              "bin_fraction": 0.0229
+            },
+            {
+              "hex": "#82C8A1",
+              "bin_fraction": 0.0177
+            },
+            {
+              "hex": "#82B9E3",
+              "bin_fraction": 0.0162
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/adma.202518245",
+      "title": "Remote-Controllable Immune-Priming Spot Formation Via Nanocomplexed Hydrogel-Assisted Histotripsy: Immunoasis.",
+      "year": 2026,
+      "first_author": "Kim SH",
+      "figure": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13088224/figure/adma71513-fig-0001/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13088224.1/ADMA-38-e18245-g003.jpg",
+      "image_size_px": [
+        546,
+        312
+      ],
+      "journal": "Advanced Materials",
+      "theme": "cell-material-interface",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "Lower-right schematic of the local cell microenvironment",
+          "relative_bbox": [
+            0.42,
+            0.4,
+            0.98,
+            0.97
+          ],
+          "colors": [
+            {
+              "hex": "#87686A",
+              "bin_fraction": 0.061
+            },
+            {
+              "hex": "#B5999A",
+              "bin_fraction": 0.0406
+            },
+            {
+              "hex": "#849ECB",
+              "bin_fraction": 0.0237
+            },
+            {
+              "hex": "#802726",
+              "bin_fraction": 0.0175
+            },
+            {
+              "hex": "#516D6F",
+              "bin_fraction": 0.0171
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1002/adma.202516537",
+      "title": "Hydrogel Thermostat Inspired by Photoprotective Foliage Using Latent and Radiative Heat Control.",
+      "year": 2026,
+      "first_author": "Heo SY",
+      "figure": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13003909/figure/adma71255-fig-0001/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13003909.1/ADMA-38-e16537-g006.jpg",
+      "image_size_px": [
+        546,
+        551
+      ],
+      "journal": "Advanced Materials",
+      "theme": "bioinspired-thermoregulation",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: upper-left leaf and water-cycle thermoregulation sketch",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.49,
+            0.29
+          ],
+          "colors": [
+            {
+              "hex": "#253F11",
+              "bin_fraction": 0.0972
+            },
+            {
+              "hex": "#3A583E",
+              "bin_fraction": 0.0769
+            },
+            {
+              "hex": "#68886B",
+              "bin_fraction": 0.056
+            },
+            {
+              "hex": "#81AD88",
+              "bin_fraction": 0.012
+            },
+            {
+              "hex": "#599AD1",
+              "bin_fraction": 0.0095
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1039/d4ee06038e",
+      "title": "Biomass-derived functional additive for highly efficient and stable lead halide perovskite solar cells with built-in lead immobilisation.",
+      "year": 2025,
+      "first_author": "Li J",
+      "figure": "Fig. 3",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12071351/figure/fig3/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12071351.1/d4ee06038e-f3.jpg",
+      "image_size_px": [
+        740,
+        434
+      ],
+      "journal": "Energy & Environmental Science",
+      "theme": "energy-materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "f/g: two small surface-treatment diagrams on right",
+          "relative_bbox": [
+            0.84,
+            0.02,
+            0.993,
+            0.51
+          ],
+          "colors": [
+            {
+              "hex": "#F8CBAD",
+              "bin_fraction": 0.7398
+            },
+            {
+              "hex": "#CFB19B",
+              "bin_fraction": 0.0073
+            },
+            {
+              "hex": "#9A9CB9",
+              "bin_fraction": 0.0071
+            },
+            {
+              "hex": "#9B806C",
+              "bin_fraction": 0.0064
+            },
+            {
+              "hex": "#533B29",
+              "bin_fraction": 0.0053
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1039/d4ee01960a",
+      "title": "A spiro-type self-assembled hole transporting monolayer for highly efficient and stable inverted perovskite solar cells and modules.",
+      "year": 2025,
+      "first_author": "Zhang X",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11619813/figure/fig1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11619813.1/d4ee01960a-f1.jpg",
+      "image_size_px": [
+        750,
+        744
+      ],
+      "journal": "Energy & Environmental Science",
+      "theme": "energy-materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "l: lower-right material interface with molecular monolayer",
+          "relative_bbox": [
+            0.38,
+            0.6,
+            0.99,
+            0.98
+          ],
+          "colors": [
+            {
+              "hex": "#B4C7E7",
+              "bin_fraction": 0.5387
+            },
+            {
+              "hex": "#E7F7DC",
+              "bin_fraction": 0.0243
+            },
+            {
+              "hex": "#50276E",
+              "bin_fraction": 0.0165
+            },
+            {
+              "hex": "#FDE89A",
+              "bin_fraction": 0.0154
+            },
+            {
+              "hex": "#B40404",
+              "bin_fraction": 0.0141
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1039/d4ee00296b",
+      "title": "Robust battery interphases from dilute fluorinated cations.",
+      "year": 2024,
+      "first_author": "Hong CN",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11185048/figure/fig1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC11185048.1/d4ee00296b-f1.jpg",
+      "image_size_px": [
+        800,
+        402
+      ],
+      "journal": "Energy & Environmental Science",
+      "theme": "energy-materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "a: battery interphase formation and molecular mechanism",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.47,
+            0.44
+          ],
+          "colors": [
+            {
+              "hex": "#FDDDC5",
+              "bin_fraction": 0.1056
+            },
+            {
+              "hex": "#F8AD76",
+              "bin_fraction": 0.0815
+            },
+            {
+              "hex": "#59E442",
+              "bin_fraction": 0.0784
+            },
+            {
+              "hex": "#73D06C",
+              "bin_fraction": 0.0426
+            },
+            {
+              "hex": "#B25253",
+              "bin_fraction": 0.0123
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adz0440",
+      "title": "Spatiotemporal toughness modulation in hydrogels through on-demand cross-linking.",
+      "year": 2025,
+      "first_author": "Lee J",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12513431/figure/F1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12513431.1/sciadv.adz0440-f1.jpg",
+      "image_size_px": [
+        766,
+        426
+      ],
+      "journal": "Science Advances",
+      "theme": "soft-materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: three stages of hydrogel network cross-linking",
+          "relative_bbox": [
+            0.01,
+            0.02,
+            0.56,
+            0.36
+          ],
+          "colors": [
+            {
+              "hex": "#D0EDF3",
+              "bin_fraction": 0.5352
+            },
+            {
+              "hex": "#FAC6C8",
+              "bin_fraction": 0.133
+            },
+            {
+              "hex": "#9AB2B7",
+              "bin_fraction": 0.0179
+            },
+            {
+              "hex": "#B1E0CE",
+              "bin_fraction": 0.0105
+            },
+            {
+              "hex": "#E81E24",
+              "bin_fraction": 0.0023
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adw9262",
+      "title": "Digital light processing of photoresponsive and programmable hydrogels.",
+      "year": 2025,
+      "first_author": "Dhand AP",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12333685/figure/F1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12333685.1/sciadv.adw9262-f1.jpg",
+      "image_size_px": [
+        733,
+        525
+      ],
+      "journal": "Science Advances",
+      "theme": "soft-materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: digital light processing apparatus and light exposure",
+          "relative_bbox": [
+            0.01,
+            0.02,
+            0.34,
+            0.56
+          ],
+          "colors": [
+            {
+              "hex": "#D1B228",
+              "bin_fraction": 0.1071
+            },
+            {
+              "hex": "#E4C9E0",
+              "bin_fraction": 0.0363
+            },
+            {
+              "hex": "#CAC2A0",
+              "bin_fraction": 0.0346
+            },
+            {
+              "hex": "#A396C9",
+              "bin_fraction": 0.0213
+            },
+            {
+              "hex": "#CBB66B",
+              "bin_fraction": 0.0179
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adx9812",
+      "title": "Nanofluidic-engineered carbon nanotube ion highways in hydrogels enable high-power aqueous zinc-ion batteries.",
+      "year": 2025,
+      "first_author": "Lin D",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12629143/figure/F1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12629143.1/sciadv.adx9812-f1.jpg",
+      "image_size_px": [
+        785,
+        798
+      ],
+      "journal": "Science Advances",
+      "theme": "energy-materials",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A/B: the two hydrogel transport pathway cartoons",
+          "relative_bbox": [
+            0.01,
+            0.01,
+            0.98,
+            0.32
+          ],
+          "colors": [
+            {
+              "hex": "#08B8FA",
+              "bin_fraction": 0.0653
+            },
+            {
+              "hex": "#FDD2E1",
+              "bin_fraction": 0.0424
+            },
+            {
+              "hex": "#E9823A",
+              "bin_fraction": 0.0296
+            },
+            {
+              "hex": "#E49B9B",
+              "bin_fraction": 0.0238
+            },
+            {
+              "hex": "#6983E4",
+              "bin_fraction": 0.0191
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.adx2110",
+      "title": "Engineered basement membrane mimetic hydrogels to study mammary epithelial morphogenesis and invasion.",
+      "year": 2025,
+      "first_author": "Baude JA",
+      "figure": "Fig. 6",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12466923/figure/F6/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12466923.1/sciadv.adx2110-f6.jpg",
+      "image_size_px": [
+        738,
+        1018
+      ],
+      "journal": "Science Advances",
+      "theme": "cell-material-interface",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: cell attachment structure shown in upper left",
+          "relative_bbox": [
+            0.018,
+            0.01,
+            0.31,
+            0.17
+          ],
+          "colors": [
+            {
+              "hex": "#F9AF42",
+              "bin_fraction": 0.1978
+            },
+            {
+              "hex": "#02A69D",
+              "bin_fraction": 0.1046
+            },
+            {
+              "hex": "#27ABE1",
+              "bin_fraction": 0.0358
+            },
+            {
+              "hex": "#2A3889",
+              "bin_fraction": 0.0331
+            },
+            {
+              "hex": "#6970B0",
+              "bin_fraction": 0.0183
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41467-025-67439-4",
+      "title": "Substrate-adaptive sacrificial corrosion strategy enables 700 mV oxygen evolution window for enhanced seawater electrolysis.",
+      "year": 2025,
+      "first_author": "Zhang X",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12820074/figure/Fig1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12820074.1/41467_2025_67439_Fig1_HTML.jpg",
+      "image_size_px": [
+        799,
+        408
+      ],
+      "journal": "Nature Communications",
+      "theme": "corrosion",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "a: exploded sacrificial-corrosion substrate and surface product",
+          "relative_bbox": [
+            0.025,
+            0.025,
+            0.55,
+            0.57
+          ],
+          "colors": [
+            {
+              "hex": "#F6DFC3",
+              "bin_fraction": 0.6592
+            },
+            {
+              "hex": "#87AEE9",
+              "bin_fraction": 0.1206
+            },
+            {
+              "hex": "#FA7C6D",
+              "bin_fraction": 0.1015
+            },
+            {
+              "hex": "#C8B7A1",
+              "bin_fraction": 0.0049
+            },
+            {
+              "hex": "#7F7DA3",
+              "bin_fraction": 0.0036
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41467-025-61060-1",
+      "title": "Tooth enamel-inspired ceramic coating on metal surface for enhanced mechanical properties and corrosion resistance.",
+      "year": 2025,
+      "first_author": "Liu S",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12217730/figure/Fig1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12217730.1/41467_2025_61060_Fig1_HTML.jpg",
+      "image_size_px": [
+        700,
+        623
+      ],
+      "journal": "Nature Communications",
+      "theme": "corrosion",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "a: sequential growth stages of the enamel-inspired corrosion-resistant ceramic coating",
+          "relative_bbox": [
+            0.018,
+            0.02,
+            0.98,
+            0.42
+          ],
+          "colors": [
+            {
+              "hex": "#3D6F86",
+              "bin_fraction": 0.1338
+            },
+            {
+              "hex": "#739EAE",
+              "bin_fraction": 0.0421
+            },
+            {
+              "hex": "#1E526A",
+              "bin_fraction": 0.0166
+            },
+            {
+              "hex": "#C40305",
+              "bin_fraction": 0.0136
+            },
+            {
+              "hex": "#379CCD",
+              "bin_fraction": 0.0075
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.abn2541",
+      "title": "Natural corrosion-induced gold nanoparticles yield purple color of Alhambra palaces decoration.",
+      "year": 2022,
+      "first_author": "Cardell C",
+      "figure": "Fig. 6",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9462697/figure/F6/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC9462697.1/sciadv.abn2541-f6.jpg",
+      "image_size_px": [
+        720,
+        1052
+      ],
+      "journal": "Science Advances",
+      "theme": "corrosion",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "B: electrochemical corrosion schematic of the gilded metal layers",
+          "relative_bbox": [
+            0.03,
+            0.29,
+            0.97,
+            0.69
+          ],
+          "colors": [
+            {
+              "hex": "#CBCEF6",
+              "bin_fraction": 0.118
+            },
+            {
+              "hex": "#9E9EF3",
+              "bin_fraction": 0.0718
+            },
+            {
+              "hex": "#998329",
+              "bin_fraction": 0.0511
+            },
+            {
+              "hex": "#C6B858",
+              "bin_fraction": 0.0219
+            },
+            {
+              "hex": "#0A7DB8",
+              "bin_fraction": 0.0193
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1126/sciadv.abd1580",
+      "title": "Chemical anti-corrosion strategy for stable inverted perovskite solar cells.",
+      "year": 2020,
+      "first_author": "Li X",
+      "figure": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7744079/figure/F1/",
+      "image_url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7744079.1/abd1580-F1.jpg",
+      "image_size_px": [
+        440,
+        301
+      ],
+      "journal": "Science Advances",
+      "theme": "corrosion",
+      "sampling_method": "chromatic-bin-mean",
+      "regions": [
+        {
+          "scope": "A: upper-left layered structure of the protected perovskite device",
+          "relative_bbox": [
+            0.12,
+            0.015,
+            0.42,
+            0.37
+          ],
+          "colors": [
+            {
+              "hex": "#0FA2C9",
+              "bin_fraction": 0.1066
+            },
+            {
+              "hex": "#338585",
+              "bin_fraction": 0.065
+            },
+            {
+              "hex": "#FDE27F",
+              "bin_fraction": 0.0558
+            },
+            {
+              "hex": "#43C4BD",
+              "bin_fraction": 0.0294
+            },
+            {
+              "hex": "#F9BB58",
+              "bin_fraction": 0.0208
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41467-022-30798-3",
+      "title": "Transient evolution of permeability and friction in a slowly slipping fault activated by fluid pressurization",
+      "journal": "Nature Communications",
+      "figure": 1,
+      "panel": "A",
+      "theme": "rock-fluid",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-022-30798-3/MediaObjects/41467_2022_30798_Fig1_HTML.png",
+      "sha256": "762f68841f56843ed3c9099d94308f50b1ecf35728cf08546afad80c6aacda17",
+      "figure_url": "https://www.nature.com/articles/s41467-022-30798-3/figures/1",
+      "image_size_px": [
+        999,
+        1448
+      ],
+      "year": 2022,
+      "sampling_method": "named-region-mode",
+      "regions": [
+        {
+          "scope": "fault plane",
+          "relative_bbox": [
+            0.575,
+            0.235,
+            0.605,
+            0.253
+          ],
+          "colors": [
+            {
+              "hex": "#F9D951",
+              "mode_fraction": 1.0
+            }
+          ]
+        },
+        {
+          "scope": "water injection zone",
+          "relative_bbox": [
+            0.652,
+            0.183,
+            0.675,
+            0.199
+          ],
+          "colors": [
+            {
+              "hex": "#88CEE3",
+              "mode_fraction": 0.378
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doi": "10.1038/s41467-023-40313-x",
+      "title": "Physical state of water controls friction of gabbro-built faults",
+      "journal": "Nature Communications",
+      "figure": 4,
+      "panel": "a,b",
+      "theme": "rock-fluid",
+      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-40313-x/MediaObjects/41467_2023_40313_Fig4_HTML.png",
+      "sha256": "84f75e432b0de98f0ed1715c0011674eebcdf5e30e7e670bcdc382ce5a7dc9ea",
+      "figure_url": "https://www.nature.com/articles/s41467-023-40313-x/figures/4",
+      "image_size_px": [
+        996,
+        1145
+      ],
+      "year": 2023,
+      "sampling_method": "named-region-mode",
+      "regions": [
+        {
+          "scope": "rock",
+          "relative_bbox": [
+            0.123,
+            0.073,
+            0.164,
+            0.089
+          ],
+          "colors": [
+            {
+              "hex": "#75777E",
+              "mode_fraction": 0.504
+            }
+          ]
+        },
+        {
+          "scope": "pore fluid",
+          "relative_bbox": [
+            0.366,
+            0.193,
+            0.407,
+            0.21
+          ],
+          "colors": [
+            {
+              "hex": "#98D1E7",
+              "mode_fraction": 0.493
+            }
+          ]
+        },
+        {
+          "scope": "red particles",
+          "relative_bbox": [
+            0.426,
+            0.665,
+            0.435,
+            0.672
+          ],
+          "colors": [
+            {
+              "hex": "#ED1C24",
+              "mode_fraction": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

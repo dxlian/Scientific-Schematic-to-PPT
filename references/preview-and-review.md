@@ -2,6 +2,8 @@
 
 Generate an image from the completed design. Show a versioned raster preview before any final editable reconstruction. Generation is performed by the host tool, not by the Python helper scripts. This package includes no image-service credentials or model download.
 
+For a user-supplied reference to reproduce, use [the reference-redraw procedure](reference-redraw.md). Create the review image from measured geometry and render data panels directly from the supplied table. For a combined page, assemble those panels at their final relative sizes before preview approval.
+
 ## Review checklist
 
 - Correct objects, sequence, directions, and connections.
