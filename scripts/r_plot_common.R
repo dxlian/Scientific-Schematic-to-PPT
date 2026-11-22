@@ -20,10 +20,13 @@ figure_colors <- function(categories) {
 # Measure typed runs on the active device and center them as a group. This keeps
 # Latin text and Chinese glyphs individually searchable in the vector PDF.
 mixed_label <- function(label, x = .5, y = .5, angle = 0, pts = 9) {
-  cjk <- "[\\p{Han}\\x{3000}-\\x{303F}\\x{FF01}-\\x{FF60}]"
-  chars <- strsplit(enc2utf8(label), "", fixed = TRUE)[[1]]
+  codes <- utf8ToInt(enc2utf8(label))
+  chars <- intToUtf8(codes, multiple = TRUE)
   if (!length(chars)) return(nullGrob())
-  flags <- grepl(cjk, chars, perl = TRUE)
+  between <- function(lo, hi) codes >= lo & codes <= hi
+  flags <- between(0x2E80, 0x303F) | between(0x3400, 0x4DBF) |
+    between(0x4E00, 0x9FFF) | between(0xF900, 0xFAFF) |
+    between(0xFF01, 0xFF60) | between(0x20000, 0x323AF)
   segments <- rle(flags)
   ends <- cumsum(segments$lengths)
   starts <- ends - segments$lengths + 1L

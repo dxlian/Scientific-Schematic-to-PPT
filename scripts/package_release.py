@@ -22,7 +22,7 @@ def selected_files(root):
         if "__pycache__" in rel.parts or any(p.startswith(".env") for p in rel.parts): continue
         if len(rel.parts) == 1 and rel.name in ROOT_FILES:
             files.append(path)
-        elif rel.as_posix() == "docs/palette-atlas.pdf":
+        elif rel.as_posix() in {"docs/palette-atlas.pdf", "docs/trials-v0.4.1/figures-100.zip"}:
             files.append(path)
         elif rel.parts[0] in SOURCE_DIRS and path.suffix.lower() in SUFFIXES:
             files.append(path)

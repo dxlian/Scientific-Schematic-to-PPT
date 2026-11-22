@@ -16,7 +16,7 @@ from matplotlib import font_manager
 from matplotlib.mathtext import MathTextParser
 import numpy as np
 
-from precision_annotations import add_features, line_geometry, place_labels
+from precision_annotations import add_features, line_geometry, place_labels, review_insets
 
 
 def read_table(path):
@@ -46,6 +46,20 @@ def column(rows, name):
             raise ValueError(f"Row {i}, {name}: infinite value")
         values.append(value)
     return np.array(values)
+
+
+def error_column(rows, field):
+    """Return symmetric magnitudes (N,) or paired lower/upper magnitudes (2,N)."""
+    if isinstance(field, str):
+        values = column(rows, field)
+    elif isinstance(field, dict) and set(field) == {"lower", "upper"} and all(
+            isinstance(name, str) for name in field.values()):
+        values = np.stack([column(rows, field["lower"]), column(rows, field["upper"])])
+    else:
+        raise ValueError("yerr must name a column or specify lower and upper column names")
+    if np.any(values < 0):
+        raise ValueError("Negative error magnitude; use nonnegative distances from the estimate")
+    return values
 
 
 def set_fonts(spec):
@@ -116,9 +130,7 @@ def draw_panel(ax, panel, rows):
         if "yerr" in series:
             if not series.get("error_definition", "").strip():
                 raise ValueError(f"Specify error_definition for {key} (e.g. supplied SD)")
-            err = column(rows, series["yerr"])
-            if np.any(err < 0):
-                raise ValueError("Negative error magnitude")
+            err = error_column(rows, series["yerr"])
         options = {"color": series.get("color"), "label": series.get("label", key),
                    "linestyle": "none" if kind == "scatter" else series.get("linestyle", "-"),
                    "marker": series.get("marker", "o" if kind == "scatter" else None),
@@ -131,12 +143,23 @@ def draw_panel(ax, panel, rows):
         artist, = ax.plot(px, py, **options)
         artists[key] = artist
         if err is not None:
+            known = np.isfinite(err) if err.ndim == 1 else np.isfinite(err).all(axis=0)
+            if ax.get_yscale() == "log":
+                lower = err if err.ndim == 1 else err[0]
+                invalid = np.flatnonzero(valid & known & (lower >= y))
+                if invalid.size:
+                    i = invalid[0]
+                    raise ValueError(f"Series {key!r}, CSV row {i + 2}: lower error endpoint "
+                                     f"({y[i]:g} - {lower[i]:g}) is non-positive on a log y axis")
+            if err.ndim == 2:
+                err[:, ~known] = np.nan
             ax.errorbar(x, y, yerr=err, fmt="none", color=artist.get_color(), capsize=2, linewidth=.7)
         sources[key] = (x, y)
         errors[key] = err
         report[key] = {"rows": len(rows), "valid_xy": int(valid.sum()), "missing_xy": int((~valid).sum()),
                        "error_definition": series.get("error_definition"),
-                       "missing_error_at_valid_xy": int((valid & ~np.isfinite(err)).sum()) if err is not None else None}
+                       "error_columns": series.get("yerr"),
+                       "missing_error_at_valid_xy": int((valid & ~known).sum()) if err is not None else None}
     if not artists:
         raise ValueError("Each panel needs a series")
     labels, features = add_features(ax, panel.get("annotations", []), sources, artists, errors)
@@ -152,6 +175,7 @@ def draw_panel(ax, panel, rows):
                 options.pop("bbox_to_anchor")
             options.update(legend)
         ax.legend(**options)
+    review_insets(ax, features, sources, artists)
     return labels, report, features
 
 
@@ -224,6 +248,7 @@ def render_panels(spec_path, out, spec, source, rows, fonts):
                      "size_mm": size, "dpi": 600, "fonts": fonts, "panels": reports}
             state["needs_layout_review"] = any(
                 panel["review_clipping"] or any(a["review_overlap"] for a in panel["annotations"])
+                or any(f.get("placement_audit", {}).get("review_occlusion") for f in panel["features"])
                 for panel in reports)
             (stage/"measurements.json").write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
             stage.rename(out)

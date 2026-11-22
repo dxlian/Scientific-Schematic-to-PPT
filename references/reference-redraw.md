@@ -12,7 +12,11 @@
 
 对需可编辑 PPT 的示意图，按原流程注册参考图和数据为输入。使用实测几何绘制预览；纯数据层由选定绘图引擎生成，组合图按最终尺寸合成预览。沿用 `workflow.py preview → approve → build_pptx.py` 的版本记录与审批。用户已明确指定原图本身作为最终重建依据时，可以将该原图作为预览注册，并按原流程记录对该版本的明确确认。逐对象保留文本、曲线、箭头及分组；实测图像、组织照片等保留其真实来源并说明编辑范围。需要在 PowerPoint 的数据表里修改数值的图，选择原生图表后端，交付时写明图表、矢量或图像各自的可编辑范围。
 
+平色器件或结构图可按[轮廓描摹脚本](trace-reference.md)从用户图片得到原生路径草稿，并在导出后用下方同网格指标复核。
+
 ## 两次对应检查
+
+对于按色块描摹的复杂插图，在同一已配准的局部裁框上同时比较边缘位置和前景颜色误差，并检查轮廓间的亮缝。增加颜色数量可能提高边缘召回率却恶化填色。以交付文件的实际渲染作为比较图，记录裁框、比较分辨率和实际测量值。原图里的字母或数字描为轮廓时，不能据此认证文字正确或可编辑。需要逐字保真时，逐条核对标签并重排为原生文字；只确认了部分术语时，列出哪些已核对、哪些仍待校读。术语图例与逐字复刻分别验收。
 
 - 将最终文件实际渲染为 PNG。对照批准预览检查对象与标注；另对照用户原图检查已承诺保留的版式、几何、色彩和标签。参考源和批准预览相同时一次比较即可。同一裁框/纵横比可用半透明叠图检查边界错位；`regions` 复用 [fidelity-review.md](fidelity-review.md) 的归一化框。留白或裁框不同时，先根据边框、面板角点等明确依据登记裁框；避免为追求表面分数而拉伸图形。
 - 根据数据表逐系列核对行数、单位及变换，重算关键注释；含对数轴时按对数坐标验证阈值和坐标映射。对峰值、阈值与置信区间等同时核对记录值、面板位置和引线落点。只有原始数据相同的系列才逐点比较原图的曲线轨迹。
@@ -22,3 +26,16 @@
 python scripts/compare_render.py --reference user-crop.png --render final.png --inventory fidelity.json --output-dir review-source --reference-label "User reference" --overlay
 python scripts/compare_render.py --reference approved.png --render final.png --inventory fidelity.json --output-dir review-preview
 ```
+
+### 在同一像素网格上复核局部图
+
+将最终 PPT 或 PDF 中的目标面板按参照框渲染到与原图相同的宽高、原点和像素间距。以角点或其他固定地标核对配准，并记录导出比例、裁框和所用插值方法。用 `regions` 指定局部区域，例如 `{"regions":[{"name":"器件边界","box":[0.1,0.2,0.6,0.8]}]}`。同时比较整图与这些局部区域可运行以下命令。
+
+```text
+python scripts/compare_render.py --reference source-panel.png --render final-panel.png --inventory fidelity.json --output-dir review-metrics --metrics
+```
+
+`--metrics` 使用 Pillow、NumPy 和 OpenCV。已有 `cv2` 可直接使用，否则为此项安装 `opencv-python-headless`。原有并排/叠图仅需 Pillow。指标在原始 RGB 像素上逐框计算，透明背景在白底合成。两图像素宽高不同会报错。`metrics.json` 保留画布尺寸、归一化框及像素框 `[left, top, right, bottom]`，右、下边界不含在内。
+
+- `rgb_mae_0_255` 是框内所有像素和 RGB 通道的平均绝对差。`nonwhite_mae_0_255` 使用原图中至少一个通道 ≤242 的像素，并记录 `nonwhite_pixels`。前景为空时输出 `null`。两项越低，颜色越接近。
+- `edge_recall_1px` 用 OpenCV 灰度 Canny 边缘（阈值 45 和 105），计算原图边缘中有多少能在实际渲染同点及周围八个像素找到边缘。同时查看 `reference_edges`；为零时召回值按案例基准记 0，该框没有可评估边缘。渲染中多出的轮廓需另看叠图。

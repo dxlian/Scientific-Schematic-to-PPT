@@ -9,9 +9,9 @@
     "named-region-mode": "Visually identify a named component. Convert source PNG to RGB, multiply normalized bounds by source dimension and round each bound. Count original RGB pixels within the crop. Use the most frequent RGB and its count divided by the area of that ROI. SHA-256 refers to the source image bytes."
   },
   "counts": {
-    "papers": 67,
+    "papers": 66,
     "journals": 15,
-    "regions": 70
+    "regions": 69
   },
   "excluded": [
     {
@@ -19,6 +19,13 @@
       "title": "Perovskite solar cells",
       "reason": "Methods primer; excluded from the original-research sample and theme recipes.",
       "figure_url": "https://www.nature.com/articles/s43586-024-00373-9/figures/1"
+    },
+    {
+      "doi": "10.1038/s41560-024-01529-3",
+      "title": "Molecular cation and low-dimensional perovskite surface passivation in perovskite solar cells",
+      "reason": "Publisher classifies this paper as a Review Article.",
+      "figure_url": "https://www.nature.com/articles/s41560-024-01529-3/figures/6",
+      "article_type_source": "https://www.nature.com/articles/s41560-024-01529-3"
     }
   ],
   "records": [
@@ -69,7 +76,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-025-08820-7"
     },
     {
       "doi": "10.1038/s41586-023-05885-0",
@@ -112,7 +121,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-023-05885-0"
     },
     {
       "doi": "10.1038/s41586-023-06927-3",
@@ -155,7 +166,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-023-06927-3"
     },
     {
       "doi": "10.1038/s41586-021-03268-x",
@@ -204,7 +217,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-021-03268-x"
     },
     {
       "doi": "10.1038/s41586-024-08406-9",
@@ -250,7 +265,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-024-08406-9"
     },
     {
       "doi": "10.1038/s41566-024-01415-0",
@@ -299,7 +316,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41566-024-01415-0"
     },
     {
       "doi": "10.1038/s41586-024-07058-z",
@@ -342,7 +361,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-024-07058-z"
     },
     {
       "doi": "10.1038/s41566-025-01701-5",
@@ -391,7 +412,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41566-025-01701-5"
     },
     {
       "doi": "10.1038/s41563-023-01569-2",
@@ -425,7 +448,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41563-023-01569-2"
     },
     {
       "doi": "10.1038/s41563-023-01697-9",
@@ -474,7 +499,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41563-023-01697-9"
     },
     {
       "doi": "10.1038/s41563-023-01649-3",
@@ -523,7 +550,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41563-023-01649-3"
     },
     {
       "doi": "10.1038/s41563-023-01712-z",
@@ -572,7 +601,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41563-023-01712-z"
     },
     {
       "doi": "10.1038/s41563-025-02146-5",
@@ -618,7 +649,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41563-025-02146-5"
     },
     {
       "doi": "10.1038/s41586-025-09269-4",
@@ -667,7 +700,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-025-09269-4"
     },
     {
       "doi": "10.1038/s41467-024-46774-y",
@@ -716,56 +751,9 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "doi": "10.1038/s41560-024-01529-3",
-      "title": "Molecular cation and low-dimensional perovskite surface passivation in perovskite solar cells",
-      "journal": "Nature Energy",
-      "first_author": "Sam Teale",
-      "year": 2024,
-      "figure": 6,
-      "figure_url": "https://www.nature.com/articles/s41560-024-01529-3/figures/6",
-      "image_url": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41560-024-01529-3/MediaObjects/41560_2024_1529_Fig6_HTML.png",
-      "theme": "energy-materials",
-      "figure_title": "Fig. 6: Passivation mechanisms.",
-      "image_size_px": [
-        2170,
-        1283
       ],
-      "sha256": "5f0d95d8394a6b7a8a81c00d9878e12ba4e0dd0d327447bf94fc247bf1f06130",
-      "sampling_method": "flat-fill-median",
-      "regions": [
-        {
-          "scope": "Upper-left atomic model. Warm atom colors sit against a neutral lattice background.",
-          "relative_bbox": [
-            0,
-            0,
-            0.42,
-            0.4
-          ],
-          "colors": [
-            {
-              "hex": "#A06E39"
-            },
-            {
-              "hex": "#C9A988"
-            },
-            {
-              "hex": "#E6D7C5"
-            },
-            {
-              "hex": "#694C2F"
-            },
-            {
-              "hex": "#B68D62"
-            },
-            {
-              "hex": "#3D4F6A"
-            }
-          ]
-        }
-      ]
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41467-024-46774-y"
     },
     {
       "doi": "10.1038/s41560-024-01667-8",
@@ -814,7 +802,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41560-024-01667-8"
     },
     {
       "doi": "10.1038/s41560-023-01220-z",
@@ -863,7 +853,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41560-023-01220-z"
     },
     {
       "doi": "10.1038/s41560-024-01579-7",
@@ -912,7 +904,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41560-024-01579-7"
     },
     {
       "doi": "10.1038/s41586-024-07705-5",
@@ -958,7 +952,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41586-024-07705-5"
     },
     {
       "doi": "10.1038/s41561-024-01513-2",
@@ -1007,7 +1003,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41561-024-01513-2"
     },
     {
       "doi": "10.1038/s41561-024-01570-7",
@@ -1050,7 +1048,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41561-024-01570-7"
     },
     {
       "doi": "10.1038/s41561-021-00764-7",
@@ -1099,7 +1099,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41561-021-00764-7"
     },
     {
       "doi": "10.1038/s41592-024-02408-1",
@@ -1148,7 +1150,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41592-024-02408-1"
     },
     {
       "doi": "10.1038/s41592-024-02463-8",
@@ -1197,7 +1201,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41592-024-02463-8"
     },
     {
       "doi": "10.1038/s41592-024-02284-9",
@@ -1246,7 +1252,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41592-024-02284-9"
     },
     {
       "doi": "10.1038/s41592-024-02501-5",
@@ -1295,7 +1303,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41592-024-02501-5"
     },
     {
       "doi": "10.1038/s41594-024-01264-z",
@@ -1344,7 +1354,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41594-024-01264-z"
     },
     {
       "doi": "10.1038/s41594-024-01477-2",
@@ -1393,7 +1405,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41594-024-01477-2"
     },
     {
       "doi": "10.1038/s41565-024-01804-0",
@@ -1442,7 +1456,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41565-024-01804-0"
     },
     {
       "doi": "10.1126/sciadv.aea3538",
@@ -1491,7 +1507,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12680059/fullTextXML"
     },
     {
       "doi": "10.1126/sciadv.adx7090",
@@ -1540,7 +1558,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fsciadv.adx7090%22&format=json&resultType=core"
     },
     {
       "doi": "10.1126/sciadv.adv2820",
@@ -1589,7 +1609,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12366681/fullTextXML"
     },
     {
       "doi": "10.1126/sciadv.adx8006",
@@ -1638,7 +1660,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12577674/fullTextXML"
     },
     {
       "doi": "10.1126/sciadv.adz5123",
@@ -1687,7 +1711,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12525772/fullTextXML"
     },
     {
       "doi": "10.1073/pnas.2502036122",
@@ -1736,7 +1762,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1073%2Fpnas.2502036122%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1073/pnas.2504304122",
@@ -1785,7 +1813,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12304956/fullTextXML"
     },
     {
       "doi": "10.1073/pnas.2425200122",
@@ -1834,7 +1864,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1073%2Fpnas.2425200122%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1073/pnas.2408974121",
@@ -1883,7 +1915,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1073%2Fpnas.2408974121%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1126/sciadv.aea1867",
@@ -1928,7 +1962,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fsciadv.aea1867%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1002/advs.202303949",
@@ -1977,7 +2013,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Research Support, Non-U.S. Gov't / research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1002%2Fadvs.202303949%22&format=json&resultType=core"
     },
     {
       "doi": "10.1002/advs.202307693",
@@ -2026,7 +2064,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1002%2Fadvs.202307693%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1038/s41566-025-01640-1",
@@ -2075,7 +2115,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41566-025-01640-1"
     },
     {
       "doi": "10.1038/s41566-024-01546-4",
@@ -2124,7 +2166,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41566-024-01546-4"
     },
     {
       "doi": "10.1073/pnas.2511724122",
@@ -2173,7 +2217,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1073%2Fpnas.2511724122%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1073/pnas.2423682122",
@@ -2222,7 +2268,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1073%2Fpnas.2423682122%22&format=json&resultType=core"
     },
     {
       "doi": "10.1073/pnas.2417757122",
@@ -2271,7 +2319,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1073%2Fpnas.2417757122%22&format=json&resultType=core"
     },
     {
       "doi": "10.1073/pnas.2506137122",
@@ -2320,7 +2370,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1073%2Fpnas.2506137122%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1016/j.joule.2022.06.012",
@@ -2369,7 +2421,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fj.joule.2022.06.012%22&format=json&resultType=core"
     },
     {
       "doi": "10.1016/j.joule.2022.02.014",
@@ -2418,7 +2472,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fj.joule.2022.02.014%22&format=json&resultType=core"
     },
     {
       "doi": "10.1002/adma.202517616",
@@ -2467,7 +2523,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1002%2Fadma.202517616%22&format=json&resultType=core"
     },
     {
       "doi": "10.1002/adma.202516185",
@@ -2516,7 +2574,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1002%2Fadma.202516185%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1002/adma.202518245",
@@ -2565,7 +2625,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1002%2Fadma.202518245%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1002/adma.202516537",
@@ -2614,7 +2676,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1002%2Fadma.202516537%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1039/d4ee06038e",
@@ -2663,7 +2727,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1039%2Fd4ee06038e%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1039/d4ee01960a",
@@ -2712,7 +2778,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1039%2Fd4ee01960a%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1039/d4ee00296b",
@@ -2761,7 +2829,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1039%2Fd4ee00296b%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1126/sciadv.adz0440",
@@ -2810,7 +2880,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12513431/fullTextXML"
     },
     {
       "doi": "10.1126/sciadv.adw9262",
@@ -2859,7 +2931,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fsciadv.adw9262%22&format=json&resultType=core"
     },
     {
       "doi": "10.1126/sciadv.adx9812",
@@ -2908,7 +2982,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fsciadv.adx9812%22&format=json&resultType=core"
     },
     {
       "doi": "10.1126/sciadv.adx2110",
@@ -2957,7 +3033,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Research Support, Non-U.S. Gov't / research-article / Research Support, U.S. Gov't, Non-P.H.S. / Journal Article / Research Support, N.I.H., Extramural",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fsciadv.adx2110%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1038/s41467-025-67439-4",
@@ -3006,7 +3084,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41467-025-67439-4"
     },
     {
       "doi": "10.1038/s41467-025-61060-1",
@@ -3055,7 +3135,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41467-025-61060-1"
     },
     {
       "doi": "10.1126/sciadv.abn2541",
@@ -3104,7 +3186,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9462697/fullTextXML"
     },
     {
       "doi": "10.1126/sciadv.abd1580",
@@ -3153,7 +3237,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "research-article / Journal Article",
+      "article_type_source": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fsciadv.abd1580%22&format=json&resultType=core&pageSize=1"
     },
     {
       "doi": "10.1038/s41467-022-30798-3",
@@ -3202,7 +3288,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41467-022-30798-3"
     },
     {
       "doi": "10.1038/s41467-023-40313-x",
@@ -3266,7 +3354,9 @@
             }
           ]
         }
-      ]
+      ],
+      "article_type": "Article",
+      "article_type_source": "https://www.nature.com/articles/s41467-023-40313-x"
     }
   ]
 }

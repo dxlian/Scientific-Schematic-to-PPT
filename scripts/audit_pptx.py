@@ -3,6 +3,9 @@ import argparse
 import json
 import posixpath
 import re
+import unicodedata
+from functools import lru_cache
+from itertools import groupby
 from pathlib import Path
 from zipfile import ZipFile
 import xml.etree.ElementTree as ET
@@ -11,7 +14,62 @@ P = "{http://schemas.openxmlformats.org/presentationml/2006/main}"
 A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
 
 
-def audit(path, native_only=False, font=None, font_latin=None, font_ea=None):
+@lru_cache(maxsize=256)
+def measuring_font(face, size, bold, italic):
+    from PIL import ImageFont
+    from matplotlib.font_manager import FontProperties, findfont
+    font = FontProperties(family=[face], weight="bold" if bold else "normal",
+                          style="italic" if italic else "normal")
+    # 720 dpi gives ten samples per typographic point.
+    return ImageFont.truetype(findfont(font, fallback_to_default=False), max(1, round(size / 10)))
+
+
+def text_width_check(shape, slide):
+    body = shape.find(P+"txBody")
+    extent = shape.find(P+"spPr/"+A+"xfrm/"+A+"ext")
+    if body is None or extent is None:
+        return None
+    name_node = shape.find(P+"nvSpPr/"+P+"cNvPr")
+    name = name_node.get("name", "") if name_node is not None else ""
+    props = body.find(A+"bodyPr")
+    result = {"slide": slide, "shape": name}
+    if props is None or props.get("vert", "horz") != "horz":
+        return dict(result, status="unmeasured", reason="Missing or vertical text frame")
+    available = (int(extent.get("cx")) - int(props.get("lIns", 91440)) -
+                 int(props.get("rIns", 91440))) / 12700
+    widths = []
+    for para in body.findall(A+"p"):
+        width = 0
+        for node in para:
+            if node.tag == A+"br":
+                widths.append(width)
+                width = 0
+                continue
+            if node.tag not in (A+"r", A+"fld"):
+                continue
+            text = node.findtext(A+"t") or ""
+            rp = node.find(A+"rPr")
+            if not text:
+                continue
+            if rp is None or rp.get("sz") is None:
+                return dict(result, status="unmeasured", reason="Inherited font size")
+            for cjk, chars in groupby(text, lambda c: unicodedata.east_asian_width(c) in ("W", "F")):
+                family = rp.find(A+("ea" if cjk else "latin"))
+                if family is None or not family.get("typeface"):
+                    return dict(result, status="unmeasured", reason="Inherited font face")
+                try:
+                    font = measuring_font(family.get("typeface"), int(rp.get("sz")),
+                                          rp.get("b") in ("1","true"), rp.get("i") in ("1","true"))
+                except (ValueError, OSError) as exc:
+                    return dict(result, status="unmeasured", reason=str(exc))
+                width += font.getlength("".join(chars)) / 10
+        widths.append(width)
+    longest = max(widths, default=0)
+    return dict(result, status="review_wrap" if longest > available + .3 else "fits_width",
+                longest_line_pt=round(longest, 2), available_pt=round(available, 2))
+
+
+def audit(path, native_only=False, font=None, font_latin=None, font_ea=None, check_text_width=False):
     result = {"file": Path(path).name, "slides": 0, "shapes": 0, "connectors": 0,
               "textboxes": 0, "groups": 0, "freeforms": 0, "pictures": 0,
               "fonts": [], "placeholders": 0, "group_locks": 0, "errors": [], "warnings": [],
@@ -19,6 +77,8 @@ def audit(path, native_only=False, font=None, font_latin=None, font_ea=None):
     fonts = set()
     by_script = {"latin": set(), "ea": set()}
     requested = {"latin": font_latin, "ea": font_ea}
+    if check_text_width:
+        result["text_width_checks"] = []
     with ZipFile(path) as archive:
         names = set(archive.namelist())
         if archive.testzip(): result["errors"].append("ZIP CRC failure")
@@ -48,7 +108,14 @@ def audit(path, native_only=False, font=None, font_latin=None, font_ea=None):
                 result[key] += len(list(root.iter(P+tag)))
             result["freeforms"] += len(list(root.iter(A+"custGeom")))
             for shape in root.iter(P+"sp"):
-                if any(e.text for e in shape.iter(A+"t")): result["textboxes"] += 1
+                if any(e.text for e in shape.iter(A+"t")):
+                    result["textboxes"] += 1
+                    if check_text_width:
+                        row = text_width_check(shape, name)
+                        if row:
+                            result["text_width_checks"].append(row)
+                            if row["status"] != "fits_width":
+                                result["warnings"].append(f"{name}: {row['shape']} {row['status']}")
             for run in root.iter(A+"r"):
                 if not run.findtext(A+"t"):
                     continue
@@ -88,9 +155,11 @@ def main():
     parser.add_argument("--font", help="Require a single font across all explicit font slots (legacy scenes)")
     parser.add_argument("--font-latin", help="Require this explicit Latin font on every text run")
     parser.add_argument("--font-ea", help="Require this explicit East Asian font on every text run")
+    parser.add_argument("--check-text-width", action="store_true",
+                        help="Measure explicitly formatted native lines and flag possible wrapping (Pillow and Matplotlib)")
     parser.add_argument("--output")
     args = parser.parse_args()
-    result = audit(args.pptx, args.require_native_only, args.font, args.font_latin, args.font_ea)
+    result = audit(args.pptx, args.require_native_only, args.font, args.font_latin, args.font_ea, args.check_text_width)
     text = json.dumps(result, ensure_ascii=False, indent=2)
     if args.output:
         target = Path(args.output)

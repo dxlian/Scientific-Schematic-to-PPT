@@ -109,6 +109,91 @@ def coordinate_label(template, x, y):
     return re.sub(r"\\.|\$|\{\{|\}\}|\{([xy])(?::([^{}]+))?\}", substitute, template)
 
 
+def inset_box(box):
+    if (len(box) != 4 or not np.isfinite(box).all() or min(box) < 0 or
+            min(box[2:]) <= 0 or box[0] + box[2] > 1 or box[1] + box[3] > 1):
+        raise ValueError("Inset box must fit in axes-fraction coordinates")
+    return Bbox.from_bounds(*box)
+
+
+def intersecting_segments(start, end, box):
+    """Count finite line segments touching a rectangle, including crossings with no vertex inside."""
+    if not len(start):
+        return 0
+    delta = end - start
+    low, high = np.zeros(len(start)), np.ones(len(start))
+    ok = np.isfinite(start).all(axis=1) & np.isfinite(end).all(axis=1)
+    for axis in (0, 1):
+        fixed = delta[:, axis] == 0
+        ok &= ~fixed | ((start[:, axis] >= box.min[axis]) & (start[:, axis] <= box.max[axis]))
+        with np.errstate(divide="ignore", invalid="ignore"):
+            a = (box.min[axis] - start[:, axis]) / delta[:, axis]
+            b = (box.max[axis] - start[:, axis]) / delta[:, axis]
+        low = np.maximum(low, np.where(fixed, -np.inf, np.minimum(a, b)))
+        high = np.minimum(high, np.where(fixed, np.inf, np.maximum(a, b)))
+    return int(np.count_nonzero(ok & (low <= high)))
+
+
+def review_insets(ax, features, sources, artists):
+    """Assess each inset against all parent series in axes coordinates after limits are final."""
+    items = [f for f in features if f["kind"] == "inset"]
+    if not items:
+        return
+    transform = ax.transData - ax.transAxes
+    points = np.concatenate([transform.transform(np.column_stack(pair)) for pair in sources.values()])
+    paths = [transform.transform(artist.get_xydata()) for artist in artists.values()
+             if artist.get_linestyle() not in ("None", "", "none")]
+    reserved = [inset_box(f["box"]) for f in items if f.get("placement", "fixed") == "fixed"]
+    for child, item in zip(ax.child_axes, items):
+        initial = inset_box(item["box"])
+        placement = item.get("placement", "fixed")
+        if placement not in ("auto", "fixed"):
+            raise ValueError("Inset placement must be auto or fixed")
+        options = [initial]
+        if placement == "auto":
+            if "candidates" in item:
+                options.extend(inset_box(b) for b in item["candidates"])
+            else:
+                w, h = initial.width, initial.height
+                mx, my = min(.04, (1-w)/2), min(.04, (1-h)/2)
+                options.extend(Bbox.from_bounds(x, y, w, h)
+                               for y in (1-h-my, my, (1-h)/2)
+                               for x in (1-w-mx, mx, (1-w)/2))
+        elif "candidates" in item:
+            raise ValueError("Set placement to auto before providing inset candidates")
+
+        def count(box):
+            point_hits = int(np.sum(np.all((points >= box.min) & (points <= box.max), axis=1)))
+            crossings = sum(intersecting_segments(path[:-1], path[1:], box) for path in paths)
+            return point_hits, crossings
+
+        counts = [count(box) for box in options]
+        if placement == "auto":
+            def score(i):
+                collisions = sum(options[i].overlaps(occupied) for occupied in reserved)
+                return collisions, sum(counts[i]), counts[i][0]
+            best = min(range(len(options)), key=score)
+            chosen = options[best]
+            reserved.append(chosen)
+            # Axes.inset_axes installs a live locator. Replace the locator so the
+            # chosen box follows the parent through layout and both export backends.
+            child.set_axes_locator(lambda child, renderer, b=chosen:
+                                   (ax.transAxes - ax.figure.transFigure).transform_bbox(b))
+        else:
+            best, chosen = 0, initial
+        hits, crossings = counts[best]
+        item["placement_audit"] = {
+            "placement": placement, "requested_box": list(initial.bounds), "actual_box": list(chosen.bounds),
+            "initial_covered_points": counts[0][0], "initial_intersecting_segments": counts[0][1],
+            "covered_points": hits, "intersecting_segments": crossings,
+            "review_occlusion": bool(hits or crossings), "candidate_count": len(options)}
+    actual = [inset_box(f["placement_audit"]["actual_box"]) for f in items]
+    for i, item in enumerate(items):
+        by_other = any(actual[i].overlaps(b) for j, b in enumerate(actual) if i != j)
+        item["placement_audit"]["overlaps_other_inset"] = by_other
+        item["placement_audit"]["review_occlusion"] |= by_other
+
+
 def add_features(ax, items, sources, artists, errors):
     """Translate declared statistical results and data series into artists and an audit trail."""
     labels, details = [], []
@@ -140,8 +225,7 @@ def add_features(ax, items, sources, artists, errors):
             labels.append((((left + right)/2, y), f"p = {pvalue:.3g}"))
         elif kind == "inset":
             box = item["box"]
-            if len(box) != 4 or min(box) < 0 or min(box[2:]) <= 0 or box[0]+box[2]>1 or box[1]+box[3]>1:
-                raise ValueError("Inset box must fit in axes-fraction coordinates")
+            inset_box(box)
             for field in ("xlim", "ylim"):
                 lo, hi = item[field]
                 if not np.isfinite([lo, hi]).all() or lo >= hi:

@@ -8,6 +8,7 @@ import math
 from pathlib import Path
 import re
 import tempfile
+import time
 
 
 def load_xy(args):
@@ -143,9 +144,18 @@ def main():
             # External originpro creates OriginExt.Application() on first access.
             # Calling attach() would select the interactive user's session.
             create_project(op, args, x, y, project)
+            # Release the saved file before requesting shutdown of the independent instance.
+            op.new(asksave=False)
         finally:
             op.exit()
-        project.rename(output)
+        for attempt in range(21):
+            try:
+                project.rename(output)
+                break
+            except PermissionError as exc:
+                if getattr(exc, "winerror", None) not in (32, 33) or attempt == 20:
+                    raise
+                time.sleep(.25)
 
 
 if __name__ == "__main__":

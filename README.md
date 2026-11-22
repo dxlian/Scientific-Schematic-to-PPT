@@ -1,6 +1,6 @@
 # Scientific Schematic to PPT
 
-v0.4.0 增加了[按研究主题选色](references/palette-guide.md)、[依照参考图和数据复绘](references/reference-redraw.md)以及[数据绘图与精准标注](references/data-plotting.md)。中文默认宋体，英文和数字默认 Times New Roman。[浏览示意图配色色卡](docs/palette-atlas.pdf)。
+v0.4.1 已用 138 篇研究论文实测，改进了局部放大窗、非对称误差棒和 PPT 文字宽度检查。中文默认宋体，英文和数字默认 Times New Roman。[下载 100 个独立绘制的案例](https://raw.githubusercontent.com/dxlian/Scientific-Schematic-to-PPT/v0.4.1/docs/trials-v0.4.1/figures-100.zip) · [查看全部 138 篇来源及试验结果](docs/releases/v0.4.1.md) · [浏览主题配色色卡](docs/palette-atlas.pdf)。
 
 **从研究材料到逐元素可编辑的学术示意图 PPT。**
 

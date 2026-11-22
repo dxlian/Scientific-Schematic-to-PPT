@@ -1,5 +1,7 @@
 # Native reconstruction and verification
 
+For scientific headings and labels, run `python scripts/audit_pptx.py figure.pptx --require-native-only --check-text-width`. With Pillow and Matplotlib installed, this reads each explicitly formatted native line from the saved file, measures its Latin and East Asian runs using the requested fonts, and compares it with the frame width minus margins. Inspect `review_wrap` at the final print size. `unmeasured` denotes inherited formatting, vertical text or unavailable fonts. This check estimates unwrapped line width. Keep approved explicit line breaks and inspect height, alignment, rotated text, and cross-object collisions in the actual rendered slide.
+
 Map the approved image to a scene, preserving proportions, labels, stacking, and physical connections. Never use a full-slide screenshot with transparent labels laid on top and call it editable.
 
 ## Preferred representation
